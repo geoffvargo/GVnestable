@@ -5,6 +5,7 @@
 package com.vargo.geoff.nestabletextview;
 
 import android.content.Context;
+import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -20,10 +21,13 @@ public class NestableTextView extends RelativeLayout {
 	public NestableTextView(Context context, String str) {
 		super(context);
 
+		this.setId(View.generateViewId());
 		text = new TextView(this.getContext());
+		this.text.setId(View.generateViewId());
 		text.setText(str);
 
 		child = new RelativeLayout(this.getContext());
+		this.child.setId(View.generateViewId());
 
 		this.addView(text);
 		this.addView(child);

@@ -23,10 +23,16 @@ public class NestableEquation extends NestableTextView {
 			case NORMAL:
 				break;
 			case FRACTION:
-				RelativeLayout.LayoutParams relLayoutParam = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-				relLayoutParam.addRule(RelativeLayout.ALIGN_PARENT_TOP, TRUE);
-				this.child.setLayoutParams(relLayoutParam);
-				this.child.addView(new NestableEquation(this.getContext(), "sdfg", EqType.NORMAL));
+				RelativeLayout.LayoutParams params1 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+
+				params1.addRule(RelativeLayout.BELOW, this.text.getId());
+
+				System.out.printf("text id: %d\n", this.text.getId());
+
+				NestableEquation eqNew = new NestableEquation(this.getContext(), "sdfg", EqType.NORMAL);
+
+				this.child.setLayoutParams(params1);
+				this.child.addView(eqNew);
 				break;
 			case EXPONENT:
 				break;
