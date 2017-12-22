@@ -12,5 +12,31 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:orientation="horizontal">
+		<RelativeLayout
+			android:id="@+id/rl0"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:clipChildren="false">
+
+			<TextView
+				android:id="@+id/tv1"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_below="@+id/rl1"
+				android:text="TextView"/>
+			<RelativeLayout
+				android:id="@+id/rl1"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_toRightOf="@id/tv1">
+
+				<TextView
+					android:id="@+id/tv2"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="TextView"
+					android:textSize="8sp"/>
+			</RelativeLayout>
+		</RelativeLayout>
 	</LinearLayout>
 </android.support.constraint.ConstraintLayout>
