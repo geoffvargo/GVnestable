@@ -1,8 +1,11 @@
+/*
+ * Copyright (c) 2017. Geoff Vargo
+ */
+
 package com.vargo.geoff.nestabletextview;
 
 import android.content.Context;
 import android.widget.RelativeLayout;
-import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
 
 /**
@@ -17,16 +20,10 @@ public class NestableTextView extends RelativeLayout {
 	public NestableTextView(Context context, String str) {
 		super(context);
 
-		this.setRight(10);
-		this.setBottom(10);
-
 		text = new TextView(this.getContext());
 		text.setText(str);
 
 		child = new RelativeLayout(this.getContext());
-		child.setPadding(20,20,0,0);
-		child.setTop(25);
-		child.setLeft(25);
 
 		this.addView(text);
 		this.addView(child);

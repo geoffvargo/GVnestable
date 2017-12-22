@@ -1,2 +1,6 @@
+<!--
+  ~ Copyright (c) 2017. Geoff Vargo
+  -->
+
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.vargo.geoff.nestabletextview"/>

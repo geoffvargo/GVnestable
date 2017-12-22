@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2017. Geoff Vargo
+ */
+
 package com.vargo.geoff.nestabletextview;
 
 import android.content.Context;
