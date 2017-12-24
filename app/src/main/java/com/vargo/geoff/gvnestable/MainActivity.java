@@ -3,14 +3,11 @@ package com.vargo.geoff.gvnestable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.vargo.geoff.nestabletextview.NestableEquation;
 import com.vargo.geoff.nestabletextview.NestableTextView;
 
-import static com.vargo.geoff.nestabletextview.EqType.EXPONENT;
 import static com.vargo.geoff.nestabletextview.EqType.FRACTION;
-import static com.vargo.geoff.nestabletextview.EqType.NORMAL;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,8 +25,8 @@ public class MainActivity extends AppCompatActivity {
 		eqqie = new NestableEquation(this, "blank", FRACTION);
 		linnie.addView(eqqie);
 
-		eqqie2 = new NestableEquation(this, "blank", EXPONENT);
-		linnie.addView(eqqie2);
+//		eqqie2 = new NestableEquation(this, "blank", EXPONENT);
+//		linnie.addView(eqqie2);
 
 //
 //		nesty = new NestableTextView(this, "asdf");
