@@ -27,28 +27,41 @@ public class NestableEquation extends NestableTextView {
 
 	protected void eqTyper(EqType eqType) {
 		NestableEquation eqNew = null;
+		ConstraintSet params1 = new ConstraintSet();
+		ConstraintSet params2 = new ConstraintSet();
+
+		params1.constrainHeight(this.text.getId(), WRAP_CONTENT);
+
+		params1.constrainWidth(this.text.getId(), WRAP_CONTENT);
 		switch (eqType) {
 			case NORMAL:
+				params1.constrainHeight(this.getId(), WRAP_CONTENT);
+				params1.constrainHeight(this.getId(), WRAP_CONTENT);
+				params1.connect(this.text.getId(), TOP, this.getId(), TOP, 0);
+				params1.connect(this.text.getId(), LEFT, this.getId(), LEFT, 0);
+				params1.constrainHeight(this.child.getId(), 0);
+				params1.constrainWidth(this.child.getId(), 0);
+				params1.applyTo(this);
 				break;
 			case FRACTION:
-				ConstraintSet params1 = new ConstraintSet();
 //				ConstraintLayout.LayoutParams params1 = new ConstraintLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT);
 //				params1.addRule(BELOW, this.text.getId());
 //				System.out.printf("text id: %d\n", this.text.getId());
 
 				eqNew = new NestableEquation(this.getContext(), "blank", NORMAL);
 
-//				this.child.setLayoutParams(params1);
+//				this.child.setLayoutParams(params1)
+
 
 				this.child.addView(eqNew);
-				params1.connect(this.text.getId(), TOP, PARENT_ID, TOP, 0);
-				params1.connect(this.text.getId(), LEFT, PARENT_ID, LEFT, 0);
-				params1.constrainHeight(this.text.getId(), WRAP_CONTENT);
-				params1.constrainWidth(this.text.getId(), WRAP_CONTENT);
+				params1.connect(this.getId(), TOP, PARENT_ID, BOTTOM, 0);
+				params1.connect(this.text.getId(), TOP, this.getId(), TOP, 0);
+
 				params1.constrainHeight(this.child.getId(), WRAP_CONTENT);
 				params1.constrainWidth(this.child.getId(), WRAP_CONTENT);
+				params1.connect(this.child.getId(), TOP, this.text.getId(), BOTTOM, 0);
 				params1.connect(this.child.getId(), LEFT, PARENT_ID, LEFT);
-				params1.connect(this.child.getId(), BOTTOM, PARENT_ID, BOTTOM, 0);
+//				params1.connect(this.child.getId(), BOTTOM, this.text.getId(), BOTTOM, 0);
 				params1.applyTo(this);
 				break;
 			case EXPONENT:

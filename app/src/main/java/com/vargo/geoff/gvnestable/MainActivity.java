@@ -5,15 +5,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.LinearLayout;
 
 import com.vargo.geoff.nestabletextview.NestableEquation;
-import com.vargo.geoff.nestabletextview.NestableTextView;
 
 import static com.vargo.geoff.nestabletextview.EqType.FRACTION;
 
 public class MainActivity extends AppCompatActivity {
 
-	public NestableTextView eqqie2;
-	public NestableEquation eqqie;
 	public LinearLayout linnie;
+	public NestableEquation eqqie;
+	public NestableEquation eqqie2;
+	public NestableEquation eqqie3;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +24,12 @@ public class MainActivity extends AppCompatActivity {
 
 		eqqie = new NestableEquation(this, "blank", FRACTION);
 		linnie.addView(eqqie);
+
+		eqqie2 = new NestableEquation(this, "blank", FRACTION);
+		linnie.addView(eqqie2);
+
+		eqqie3 = new NestableEquation(this, "blaasasnk", FRACTION);
+		linnie.addView(eqqie3);
 
 //		eqqie2 = new NestableEquation(this, "blank", EXPONENT);
 //		linnie.addView(eqqie2);
