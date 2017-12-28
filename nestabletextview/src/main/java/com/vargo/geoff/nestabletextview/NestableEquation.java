@@ -5,11 +5,13 @@
 package com.vargo.geoff.nestabletextview;
 
 import android.content.Context;
+import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
 
 import static android.support.constraint.ConstraintSet.BOTTOM;
 import static android.support.constraint.ConstraintSet.LEFT;
 import static android.support.constraint.ConstraintSet.PARENT_ID;
+import static android.support.constraint.ConstraintSet.RIGHT;
 import static android.support.constraint.ConstraintSet.TOP;
 import static android.support.constraint.ConstraintSet.WRAP_CONTENT;
 import static com.vargo.geoff.nestabletextview.EqType.NORMAL;
@@ -31,8 +33,8 @@ public class NestableEquation extends NestableTextView {
 		ConstraintSet params2 = new ConstraintSet();
 
 		params1.constrainHeight(this.text.getId(), WRAP_CONTENT);
-
 		params1.constrainWidth(this.text.getId(), WRAP_CONTENT);
+
 		switch (eqType) {
 			case NORMAL:
 				params1.constrainHeight(this.getId(), WRAP_CONTENT);
@@ -44,14 +46,7 @@ public class NestableEquation extends NestableTextView {
 				params1.applyTo(this);
 				break;
 			case FRACTION:
-//				ConstraintLayout.LayoutParams params1 = new ConstraintLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT);
-//				params1.addRule(BELOW, this.text.getId());
-//				System.out.printf("text id: %d\n", this.text.getId());
-
 				eqNew = new NestableEquation(this.getContext(), "blank", NORMAL);
-
-//				this.child.setLayoutParams(params1)
-
 
 				this.child.addView(eqNew);
 				params1.connect(this.getId(), TOP, PARENT_ID, BOTTOM, 0);
@@ -61,22 +56,27 @@ public class NestableEquation extends NestableTextView {
 				params1.constrainWidth(this.child.getId(), WRAP_CONTENT);
 				params1.connect(this.child.getId(), TOP, this.text.getId(), BOTTOM, 0);
 				params1.connect(this.child.getId(), LEFT, PARENT_ID, LEFT);
-//				params1.connect(this.child.getId(), BOTTOM, this.text.getId(), BOTTOM, 0);
 				params1.applyTo(this);
 				break;
 			case EXPONENT:
-//				ConstraintLayout.LayoutParams params2 = new ConstraintLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT);
-//				params2.addRule(RIGHT_OF, this.text.getId());
-//				this.child.setLayoutParams(params2);
-
-//				ConstraintLayout.LayoutParams params3 = new ConstraintLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT);
-//				params3.addRule(BELOW, this.child.getId());
-//				this.text.setLayoutParams(params3);
+//				this.setClipChildren(false);
+				params2.constrainHeight(this.getId(), WRAP_CONTENT);
+				params2.constrainWidth(this.getId(), WRAP_CONTENT);
 
 				eqNew = new NestableEquation(this.getContext(), "blank", NORMAL);
 				eqNew.text.setTextSize(8);
-
+				eqNew.setClipChildren(false);
 				this.child.addView(eqNew);
+
+				params2.connect(this.child.getId(), LEFT, this.text.getId(), RIGHT, 0);
+				params2.connect(this.child.getId(), TOP, this.getId(), TOP, 0);
+				params2.constrainHeight(this.child.getId(), WRAP_CONTENT);
+				params2.constrainWidth(this.child.getId(), WRAP_CONTENT);
+
+				params2.connect(eqNew.getId(), TOP, ((ConstraintLayout) eqNew.getParent()).getId(), TOP, 0);
+				params2.connect(eqNew.getId(), LEFT, ((ConstraintLayout) eqNew.getParent()).getId(), LEFT, 0);
+
+				params2.applyTo(this);
 				break;
 			case ORDINAL:
 				break;
