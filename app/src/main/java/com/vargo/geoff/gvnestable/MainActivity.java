@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 		eqqie = new NestableEquation(this, "blank", FRACTION);
 		linnie.addView(eqqie);
 
-		eqqie2 = new NestableEquation(this, "blank", FRACTION);
+		eqqie2 = new NestableEquation(this, "blank", EXPONENT);
 		linnie.addView(eqqie2);
 
 //		eqqie3 = new NestableEquation(this, "blank", FRACTION);
