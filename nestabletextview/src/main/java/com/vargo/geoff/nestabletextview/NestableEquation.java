@@ -80,6 +80,8 @@ public class NestableEquation extends NestableTextView {
 				break;
 			case ORDINAL:
 				break;
+			case SQRT:
+				break;
 		}
 	}
 }

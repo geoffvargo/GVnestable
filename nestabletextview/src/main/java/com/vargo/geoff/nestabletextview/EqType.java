@@ -9,5 +9,5 @@ package com.vargo.geoff.nestabletextview;
  */
 
 public enum EqType {
-	NORMAL, FRACTION, EXPONENT, ORDINAL
+	NORMAL, FRACTION, EXPONENT, ORDINAL, SQRT
 }
