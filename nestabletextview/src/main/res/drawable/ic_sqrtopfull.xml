@@ -1,9 +1,9 @@
-<!--
-  ~ Copyright (c) 2017. Geoff Vargo
-  -->
-
-<vector android:autoMirrored="true" android:height="134dp"
-    android:viewportHeight="134.4" android:viewportWidth="316.1"
-    android:width="316dp" xmlns:aapt="http://schemas.android.com/aapt" xmlns:android="http://schemas.android.com/apk/res/android">
-    <path android:pathData="M316.1,20.5l-225,0c0,0 -45.8,95 -46.1,95.6c-0.1,0.3 -0.5,1.2 -1,2.1c-0.5,1 -0.9,2 -2.5,1.9c-1.5,-0.1 -1.4,-0.3 -1.9,-0.9L18.8,73.7L12,78.2l-1,-1.4l13.6,-10.6L44,109.1l44.2,-92.7h228V20.5z"/>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+        android:width="316dp"
+        android:height="134dp"
+        android:viewportWidth="316"
+        android:viewportHeight="134">
+    <path
+        android:fillColor="#FF000000"
+        android:pathData="M316.1,20.5h-225c0,0 -45.8,95 -46.1,95.6c-0.1,0.3 -0.5,1.2 -1,2.1c-0.5,1 -0.9,2 -2.5,1.9c-1.5,-0.1 -1.4,-0.3 -1.9,-0.9l-20.8,-45.5l-6.8,4.5l-1,-1.4l13.6,-10.6l19.4,42.9l44.2,-92.7h228v4.1L316.1,20.5z"/>
 </vector>

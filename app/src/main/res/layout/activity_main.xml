@@ -12,7 +12,9 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:orientation="horizontal"
-		android:padding="4dp">
+		android:padding="4dp"
+		app:layout_constraintLeft_toLeftOf="parent"
+		app:layout_constraintTop_toTopOf="parent">
 		<android.support.constraint.ConstraintLayout
 			android:id="@+id/rl0"
 			android:layout_width="wrap_content"
@@ -64,11 +66,11 @@
 				android:layout_width="0dp"
 				android:layout_height="wrap_content"
 				android:fontFamily="@font/untitled1"
-				android:text="ABBB"
+				android:singleLine="true"
+				android:text="ABBBBBBBBBBBBBBBBB"
 				android:textSize="24sp"
 				app:layout_constraintBottom_toBottomOf="parent"
-				app:layout_constraintLeft_toLeftOf="parent"
-				/>
+				app:layout_constraintLeft_toLeftOf="parent"/>
 			<android.support.constraint.ConstraintLayout
 				android:id="@+id/cl5"
 				android:layout_width="wrap_content"
@@ -90,7 +92,7 @@
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:paddingLeft="6dp"
-						android:text="TextView"
+						android:text="TextViewasdfasdf"
 						android:textAlignment="textStart"
 						android:textSize="14sp"
 						app:layout_constraintBottom_toBottomOf="parent"
@@ -99,5 +101,75 @@
 				</android.support.constraint.ConstraintLayout>
 			</android.support.constraint.ConstraintLayout>
 		</android.support.constraint.ConstraintLayout>
+		<android.support.constraint.ConstraintLayout
+			android:id="@+id/cl7"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:clipChildren="true">
+
+			<ImageView
+				android:id="@+id/imageView"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:adjustViewBounds="false"
+				android:cropToPadding="false"
+				app:srcCompat="@drawable/ic_sqrtophead"/>
+			<ImageView
+				android:id="@+id/imageView4"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:adjustViewBounds="false"
+				android:scaleType="fitXY"
+				app:layout_constraintHorizontal_chainStyle="spread_inside"
+				app:layout_constraintLeft_toRightOf="@+id/imageView"
+				app:layout_constraintRight_toRightOf="@+id/cl8"
+				app:srcCompat="@drawable/ic_sqrtoptail"/>
+			<TextView
+				android:id="@+id/tv5"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:fontFamily="@font/untitled1"
+				android:singleLine="true"
+				android:textSize="24sp"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintLeft_toLeftOf="parent"/>
+			<android.support.constraint.ConstraintLayout
+				android:id="@+id/cl8"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="8dp"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintRight_toRightOf="parent">
+
+				<android.support.constraint.ConstraintLayout
+					android:id="@+id/cl9"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginStart="16dp"
+					android:clipChildren="false"
+					android:clipToPadding="false"
+					app:layout_constraintBaseline_toBaselineOf="parent"
+					app:layout_constraintStart_toStartOf="parent">
+
+					<TextView
+						android:id="@+id/tv6"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:paddingLeft="6dp"
+						android:text="TextViewasdfasdf"
+						android:textAlignment="textStart"
+						android:textSize="14sp"
+						app:layout_constraintBottom_toBottomOf="parent"
+						app:layout_constraintEnd_toEndOf="parent"
+						app:layout_constraintLeft_toLeftOf="parent"/>
+				</android.support.constraint.ConstraintLayout>
+			</android.support.constraint.ConstraintLayout>
+		</android.support.constraint.ConstraintLayout>
+	</LinearLayout>
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="horizontal"
+		app:layout_constraintTop_toBottomOf="@+id/linnie">
 	</LinearLayout>
 </android.support.constraint.ConstraintLayout>

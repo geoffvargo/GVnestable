@@ -1,0 +1,18 @@
+<!--
+  ~ Copyright (c) 2018. Geoff Vargo
+  -->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+        android:width="24dp"
+        android:height="24dp"
+        android:viewportHeight="24.4"
+        android:viewportWidth="24.1">
+	<group
+		android:scaleX="0.25"
+		android:scaleY="0.25">
+		<path
+			android:fillColor="#FF000000"
+			android:pathData="M110.6 22.1, h-110.6, v-4.1, h107.9, H110.6z"/>
+	</group>
+
+</vector>
