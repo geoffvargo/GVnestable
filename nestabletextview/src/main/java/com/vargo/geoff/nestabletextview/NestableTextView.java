@@ -26,7 +26,6 @@ public class NestableTextView extends ConstraintLayout {
 	public NestableTextView(Context context, String str) {
 		super(context);
 
-//		this.
 		this.setId(View.generateViewId());
 		text = new TextView(this.getContext());
 		this.text.setId(View.generateViewId());

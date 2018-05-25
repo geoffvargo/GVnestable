@@ -81,6 +81,7 @@ public class NestableEquation extends NestableTextView {
 			case ORDINAL:
 				break;
 			case SQRT:
+//				eqnesw
 				break;
 		}
 	}

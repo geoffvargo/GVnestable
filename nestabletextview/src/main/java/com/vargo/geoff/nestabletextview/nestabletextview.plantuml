@@ -1,0 +1,609 @@
+@startuml
+
+title __NESTABLETEXTVIEW's Class Diagram__\n
+
+  package com.vargo.geoff.nestabletextview {
+    enum EqType {
+      NORMAL
+      FRACTION
+      EXPONENT
+      ORDINAL
+      SQRT
+    }
+  }
+  
+
+  package com.vargo.geoff.nestabletextview {
+    class NestableEquation {
+        + NestableEquation()
+        # eqTyper()
+    }
+  }
+  
+
+  package android.support.constraint {
+    class LayoutParams {
+        {static} + MATCH_CONSTRAINT : int
+        {static} + PARENT_ID : int
+        {static} + UNSET : int
+        {static} + HORIZONTAL : int
+        {static} + VERTICAL : int
+        {static} + LEFT : int
+        {static} + RIGHT : int
+        {static} + TOP : int
+        {static} + BOTTOM : int
+        {static} + BASELINE : int
+        {static} + START : int
+        {static} + END : int
+        {static} + MATCH_CONSTRAINT_WRAP : int
+        {static} + MATCH_CONSTRAINT_SPREAD : int
+        {static} + CHAIN_SPREAD : int
+        {static} + CHAIN_SPREAD_INSIDE : int
+        {static} + CHAIN_PACKED : int
+        + guideBegin : int
+        + guideEnd : int
+        + guidePercent : float
+        + leftToLeft : int
+        + leftToRight : int
+        + rightToLeft : int
+        + rightToRight : int
+        + topToTop : int
+        + topToBottom : int
+        + bottomToTop : int
+        + bottomToBottom : int
+        + baselineToBaseline : int
+        + startToEnd : int
+        + startToStart : int
+        + endToStart : int
+        + endToEnd : int
+        + goneLeftMargin : int
+        + goneTopMargin : int
+        + goneRightMargin : int
+        + goneBottomMargin : int
+        + goneStartMargin : int
+        + goneEndMargin : int
+        + horizontalBias : float
+        + verticalBias : float
+        + dimensionRatio : String
+        ~ dimensionRatioValue : float
+        ~ dimensionRatioSide : int
+        + horizontalWeight : float
+        + verticalWeight : float
+        + horizontalChainStyle : int
+        + verticalChainStyle : int
+        + matchConstraintDefaultWidth : int
+        + matchConstraintDefaultHeight : int
+        + matchConstraintMinWidth : int
+        + matchConstraintMinHeight : int
+        + matchConstraintMaxWidth : int
+        + matchConstraintMaxHeight : int
+        + editorAbsoluteX : int
+        + editorAbsoluteY : int
+        + orientation : int
+        ~ horizontalDimensionFixed : boolean
+        ~ verticalDimensionFixed : boolean
+        ~ needsBaseline : boolean
+        ~ isGuideline : boolean
+        ~ resolvedLeftToLeft : int
+        ~ resolvedLeftToRight : int
+        ~ resolvedRightToLeft : int
+        ~ resolvedRightToRight : int
+        ~ resolveGoneLeftMargin : int
+        ~ resolveGoneRightMargin : int
+        ~ resolvedHorizontalBias : float
+        ~ widget : ConstraintWidget
+        + LayoutParams()
+        + LayoutParams()
+        + validate()
+        + LayoutParams()
+        + LayoutParams()
+        + resolveLayoutDirection()
+    }
+  }
+  
+
+  class MarginLayoutParams {
+      + bottomMargin : int
+      + leftMargin : int
+      + rightMargin : int
+      + topMargin : int
+      + MarginLayoutParams()
+      + MarginLayoutParams()
+      + MarginLayoutParams()
+      + MarginLayoutParams()
+      + setMargins()
+      + setMarginStart()
+      + getMarginStart()
+      + setMarginEnd()
+      + getMarginEnd()
+      + isMarginRelative()
+      + setLayoutDirection()
+      + getLayoutDirection()
+      + resolveLayoutDirection()
+  }
+  
+
+  class LayoutParams {
+      {static} + FILL_PARENT : int
+      {static} + MATCH_PARENT : int
+      {static} + WRAP_CONTENT : int
+      + height : int
+      + layoutAnimationParameters : AnimationParameters
+      + width : int
+      + LayoutParams()
+      + LayoutParams()
+      + LayoutParams()
+      # setBaseAttributes()
+      + resolveLayoutDirection()
+  }
+  
+
+  interface OnHierarchyChangeListener {
+      {abstract} + onChildViewAdded()
+      {abstract} + onChildViewRemoved()
+  }
+  
+
+  class AccessibilityDelegate {
+      + AccessibilityDelegate()
+      + sendAccessibilityEvent()
+      + performAccessibilityAction()
+      + sendAccessibilityEventUnchecked()
+      + dispatchPopulateAccessibilityEvent()
+      + onPopulateAccessibilityEvent()
+      + onInitializeAccessibilityEvent()
+      + onInitializeAccessibilityNodeInfo()
+      + onRequestSendAccessibilityEvent()
+      + getAccessibilityNodeProvider()
+  }
+  
+
+  class BaseSavedState {
+      {static} + CREATOR : Creator<BaseSavedState>
+      + BaseSavedState()
+      + BaseSavedState()
+      + BaseSavedState()
+      + writeToParcel()
+  }
+  
+
+  interface ClassLoaderCreator {
+      {abstract} + createFromParcel()
+  }
+  
+
+  interface Creator {
+      {abstract} + createFromParcel()
+      {abstract} + newArray()
+  }
+  
+
+  interface OnApplyWindowInsetsListener {
+      {abstract} + onApplyWindowInsets()
+  }
+  
+
+  interface OnAttachStateChangeListener {
+      {abstract} + onViewAttachedToWindow()
+      {abstract} + onViewDetachedFromWindow()
+  }
+  
+
+  interface OnSystemUiVisibilityChangeListener {
+      {abstract} + onSystemUiVisibilityChange()
+  }
+  
+
+  interface OnCreateContextMenuListener {
+      {abstract} + onCreateContextMenu()
+  }
+  
+
+  interface OnContextClickListener {
+      {abstract} + onContextClick()
+  }
+  
+
+  interface OnClickListener {
+      {abstract} + onClick()
+  }
+  
+
+  interface OnFocusChangeListener {
+      {abstract} + onFocusChange()
+  }
+  
+
+  interface OnDragListener {
+      {abstract} + onDrag()
+  }
+  
+
+  interface OnLongClickListener {
+      {abstract} + onLongClick()
+  }
+  
+
+  interface OnGenericMotionListener {
+      {abstract} + onGenericMotion()
+  }
+  
+
+  interface OnHoverListener {
+      {abstract} + onHover()
+  }
+  
+
+  interface OnTouchListener {
+      {abstract} + onTouch()
+  }
+  
+
+  interface OnKeyListener {
+      {abstract} + onKey()
+  }
+  
+
+  class MeasureSpec {
+      {static} + AT_MOST : int
+      {static} + EXACTLY : int
+      {static} + UNSPECIFIED : int
+      + MeasureSpec()
+      {static} + makeMeasureSpec()
+      {static} + getMode()
+      {static} + getSize()
+      {static} + toString()
+  }
+  
+
+  class DragShadowBuilder {
+      + DragShadowBuilder()
+      + DragShadowBuilder()
+      + getView()
+      + onProvideShadowMetrics()
+      + onDrawShadow()
+  }
+  
+
+  interface OnLayoutChangeListener {
+      {abstract} + onLayoutChange()
+  }
+  
+
+  interface OnScrollChangeListener {
+      {abstract} + onScrollChange()
+  }
+  
+
+  package com.vargo.geoff.nestabletextview {
+    class NestableTextView {
+        # text : TextView
+        # child : ConstraintLayout
+        + NestableTextView()
+        + addChild()
+    }
+  }
+  
+
+  package android.support.constraint {
+    class LayoutParams {
+        {static} + MATCH_CONSTRAINT : int
+        {static} + PARENT_ID : int
+        {static} + UNSET : int
+        {static} + HORIZONTAL : int
+        {static} + VERTICAL : int
+        {static} + LEFT : int
+        {static} + RIGHT : int
+        {static} + TOP : int
+        {static} + BOTTOM : int
+        {static} + BASELINE : int
+        {static} + START : int
+        {static} + END : int
+        {static} + MATCH_CONSTRAINT_WRAP : int
+        {static} + MATCH_CONSTRAINT_SPREAD : int
+        {static} + CHAIN_SPREAD : int
+        {static} + CHAIN_SPREAD_INSIDE : int
+        {static} + CHAIN_PACKED : int
+        + guideBegin : int
+        + guideEnd : int
+        + guidePercent : float
+        + leftToLeft : int
+        + leftToRight : int
+        + rightToLeft : int
+        + rightToRight : int
+        + topToTop : int
+        + topToBottom : int
+        + bottomToTop : int
+        + bottomToBottom : int
+        + baselineToBaseline : int
+        + startToEnd : int
+        + startToStart : int
+        + endToStart : int
+        + endToEnd : int
+        + goneLeftMargin : int
+        + goneTopMargin : int
+        + goneRightMargin : int
+        + goneBottomMargin : int
+        + goneStartMargin : int
+        + goneEndMargin : int
+        + horizontalBias : float
+        + verticalBias : float
+        + dimensionRatio : String
+        ~ dimensionRatioValue : float
+        ~ dimensionRatioSide : int
+        + horizontalWeight : float
+        + verticalWeight : float
+        + horizontalChainStyle : int
+        + verticalChainStyle : int
+        + matchConstraintDefaultWidth : int
+        + matchConstraintDefaultHeight : int
+        + matchConstraintMinWidth : int
+        + matchConstraintMinHeight : int
+        + matchConstraintMaxWidth : int
+        + matchConstraintMaxHeight : int
+        + editorAbsoluteX : int
+        + editorAbsoluteY : int
+        + orientation : int
+        ~ horizontalDimensionFixed : boolean
+        ~ verticalDimensionFixed : boolean
+        ~ needsBaseline : boolean
+        ~ isGuideline : boolean
+        ~ resolvedLeftToLeft : int
+        ~ resolvedLeftToRight : int
+        ~ resolvedRightToLeft : int
+        ~ resolvedRightToRight : int
+        ~ resolveGoneLeftMargin : int
+        ~ resolveGoneRightMargin : int
+        ~ resolvedHorizontalBias : float
+        ~ widget : ConstraintWidget
+        + LayoutParams()
+        + LayoutParams()
+        + validate()
+        + LayoutParams()
+        + LayoutParams()
+        + resolveLayoutDirection()
+    }
+  }
+  
+
+  class MarginLayoutParams {
+      + bottomMargin : int
+      + leftMargin : int
+      + rightMargin : int
+      + topMargin : int
+      + MarginLayoutParams()
+      + MarginLayoutParams()
+      + MarginLayoutParams()
+      + MarginLayoutParams()
+      + setMargins()
+      + setMarginStart()
+      + getMarginStart()
+      + setMarginEnd()
+      + getMarginEnd()
+      + isMarginRelative()
+      + setLayoutDirection()
+      + getLayoutDirection()
+      + resolveLayoutDirection()
+  }
+  
+
+  class LayoutParams {
+      {static} + FILL_PARENT : int
+      {static} + MATCH_PARENT : int
+      {static} + WRAP_CONTENT : int
+      + height : int
+      + layoutAnimationParameters : AnimationParameters
+      + width : int
+      + LayoutParams()
+      + LayoutParams()
+      + LayoutParams()
+      # setBaseAttributes()
+      + resolveLayoutDirection()
+  }
+  
+
+  interface OnHierarchyChangeListener {
+      {abstract} + onChildViewAdded()
+      {abstract} + onChildViewRemoved()
+  }
+  
+
+  class AccessibilityDelegate {
+      + AccessibilityDelegate()
+      + sendAccessibilityEvent()
+      + performAccessibilityAction()
+      + sendAccessibilityEventUnchecked()
+      + dispatchPopulateAccessibilityEvent()
+      + onPopulateAccessibilityEvent()
+      + onInitializeAccessibilityEvent()
+      + onInitializeAccessibilityNodeInfo()
+      + onRequestSendAccessibilityEvent()
+      + getAccessibilityNodeProvider()
+  }
+  
+
+  class BaseSavedState {
+      {static} + CREATOR : Creator<BaseSavedState>
+      + BaseSavedState()
+      + BaseSavedState()
+      + BaseSavedState()
+      + writeToParcel()
+  }
+  
+
+  interface ClassLoaderCreator {
+      {abstract} + createFromParcel()
+  }
+  
+
+  interface Creator {
+      {abstract} + createFromParcel()
+      {abstract} + newArray()
+  }
+  
+
+  interface OnApplyWindowInsetsListener {
+      {abstract} + onApplyWindowInsets()
+  }
+  
+
+  interface OnAttachStateChangeListener {
+      {abstract} + onViewAttachedToWindow()
+      {abstract} + onViewDetachedFromWindow()
+  }
+  
+
+  interface OnSystemUiVisibilityChangeListener {
+      {abstract} + onSystemUiVisibilityChange()
+  }
+  
+
+  interface OnCreateContextMenuListener {
+      {abstract} + onCreateContextMenu()
+  }
+  
+
+  interface OnContextClickListener {
+      {abstract} + onContextClick()
+  }
+  
+
+  interface OnClickListener {
+      {abstract} + onClick()
+  }
+  
+
+  interface OnFocusChangeListener {
+      {abstract} + onFocusChange()
+  }
+  
+
+  interface OnDragListener {
+      {abstract} + onDrag()
+  }
+  
+
+  interface OnLongClickListener {
+      {abstract} + onLongClick()
+  }
+  
+
+  interface OnGenericMotionListener {
+      {abstract} + onGenericMotion()
+  }
+  
+
+  interface OnHoverListener {
+      {abstract} + onHover()
+  }
+  
+
+  interface OnTouchListener {
+      {abstract} + onTouch()
+  }
+  
+
+  interface OnKeyListener {
+      {abstract} + onKey()
+  }
+  
+
+  class MeasureSpec {
+      {static} + AT_MOST : int
+      {static} + EXACTLY : int
+      {static} + UNSPECIFIED : int
+      + MeasureSpec()
+      {static} + makeMeasureSpec()
+      {static} + getMode()
+      {static} + getSize()
+      {static} + toString()
+  }
+  
+
+  class DragShadowBuilder {
+      + DragShadowBuilder()
+      + DragShadowBuilder()
+      + getView()
+      + onProvideShadowMetrics()
+      + onDrawShadow()
+  }
+  
+
+  interface OnLayoutChangeListener {
+      {abstract} + onLayoutChange()
+  }
+  
+
+  interface OnScrollChangeListener {
+      {abstract} + onScrollChange()
+  }
+  
+
+  NestableEquation -up-|> NestableTextView
+  NestableEquation +-down- LayoutParams
+  NestableEquation +-down- MarginLayoutParams
+  NestableEquation +-down- LayoutParams
+  NestableEquation +-down- OnHierarchyChangeListener
+  NestableEquation +-down- AccessibilityDelegate
+  NestableEquation +-down- BaseSavedState
+  NestableEquation +-down- OnApplyWindowInsetsListener
+  NestableEquation +-down- OnAttachStateChangeListener
+  NestableEquation +-down- OnSystemUiVisibilityChangeListener
+  NestableEquation +-down- OnCreateContextMenuListener
+  NestableEquation +-down- OnContextClickListener
+  NestableEquation +-down- OnClickListener
+  NestableEquation +-down- OnFocusChangeListener
+  NestableEquation +-down- OnDragListener
+  NestableEquation +-down- OnLongClickListener
+  NestableEquation +-down- OnGenericMotionListener
+  NestableEquation +-down- OnHoverListener
+  NestableEquation +-down- OnTouchListener
+  NestableEquation +-down- OnKeyListener
+  NestableEquation +-down- MeasureSpec
+  NestableEquation +-down- DragShadowBuilder
+  NestableEquation +-down- OnLayoutChangeListener
+  NestableEquation +-down- OnScrollChangeListener
+  LayoutParams -up-|> MarginLayoutParams
+  MarginLayoutParams -up-|> LayoutParams
+  BaseSavedState -up-|> AbsSavedState
+  BaseSavedState +-down- ClassLoaderCreator
+  BaseSavedState +-down- Creator
+  NestableTextView -up-|> ConstraintLayout
+  NestableTextView +-down- LayoutParams
+  NestableTextView +-down- MarginLayoutParams
+  NestableTextView +-down- LayoutParams
+  NestableTextView +-down- OnHierarchyChangeListener
+  NestableTextView +-down- AccessibilityDelegate
+  NestableTextView +-down- BaseSavedState
+  NestableTextView +-down- OnApplyWindowInsetsListener
+  NestableTextView +-down- OnAttachStateChangeListener
+  NestableTextView +-down- OnSystemUiVisibilityChangeListener
+  NestableTextView +-down- OnCreateContextMenuListener
+  NestableTextView +-down- OnContextClickListener
+  NestableTextView +-down- OnClickListener
+  NestableTextView +-down- OnFocusChangeListener
+  NestableTextView +-down- OnDragListener
+  NestableTextView +-down- OnLongClickListener
+  NestableTextView +-down- OnGenericMotionListener
+  NestableTextView +-down- OnHoverListener
+  NestableTextView +-down- OnTouchListener
+  NestableTextView +-down- OnKeyListener
+  NestableTextView +-down- MeasureSpec
+  NestableTextView +-down- DragShadowBuilder
+  NestableTextView +-down- OnLayoutChangeListener
+  NestableTextView +-down- OnScrollChangeListener
+  LayoutParams -up-|> MarginLayoutParams
+  MarginLayoutParams -up-|> LayoutParams
+  BaseSavedState -up-|> AbsSavedState
+  BaseSavedState +-down- ClassLoaderCreator
+  BaseSavedState +-down- Creator
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml
