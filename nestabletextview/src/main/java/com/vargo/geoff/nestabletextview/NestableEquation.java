@@ -7,6 +7,7 @@ package com.vargo.geoff.nestabletextview;
 import android.content.Context;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
+import android.view.View;
 
 import static android.support.constraint.ConstraintSet.BOTTOM;
 import static android.support.constraint.ConstraintSet.LEFT;
@@ -28,7 +29,7 @@ public class NestableEquation extends NestableTextView {
 	}
 
 	protected void eqTyper(EqType eqType) {
-		NestableEquation eqNew = null;
+		NestableTextView eqNew = null;
 		ConstraintSet params1 = new ConstraintSet();
 		ConstraintSet params2 = new ConstraintSet();
 
@@ -60,6 +61,7 @@ public class NestableEquation extends NestableTextView {
 				break;
 			case EXPONENT:
 //				this.setClipChildren(false);
+
 				params2.constrainHeight(this.getId(), WRAP_CONTENT);
 				params2.constrainWidth(this.getId(), WRAP_CONTENT);
 
@@ -81,7 +83,15 @@ public class NestableEquation extends NestableTextView {
 			case ORDINAL:
 				break;
 			case SQRT:
-//				eqnesw
+				params2.constrainHeight(this.getId(), WRAP_CONTENT);
+				params2.constrainWidth(this.getId(), WRAP_CONTENT);
+
+				View testvee = new gvSqrt(this.getContext(), "blank");
+
+				this.child.addView(testvee);
+
+				// TODO: set layout constraints for alignment
+
 				break;
 		}
 	}

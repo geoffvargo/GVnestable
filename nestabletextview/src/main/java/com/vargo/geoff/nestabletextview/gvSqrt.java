@@ -9,8 +9,10 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.view.View;
 
-public class gvSqrt extends NestableTextView {
+public class gvSqrt extends View {
+//public class gvSqrt extends NestableTextView {
 	protected float ypos = 22;
 	protected float xpos = 110;
 
@@ -18,19 +20,22 @@ public class gvSqrt extends NestableTextView {
 	protected float lineWidth = 0;
 
 	public gvSqrt(Context context, String str) {
-		super(context, str);
-		this.layout(0, 0, 0, 0);
+		super(context);
+//		super(context, str);
+//		this.layout(0, 0, 0, 0);
 	}
 
 	public gvSqrt(Context context, String str, float hfactor) {
-		super(context, str);
-		this.layout(0, 0, 0, 0);
+		super(context);
+//		super(context, str);
+//		this.layout(0, 0, 0, 0);
 		this.hfactor = hfactor;
 	}
 
 	public gvSqrt(Context context, String str, float hfactor, float lineWidth) {
-		super(context, str);
-		this.layout(0, 0, 0, 0);
+		super(context);
+//		super(context, str);
+//		this.layout(0, 0, 0, 0);
 		this.hfactor = hfactor;
 		this.lineWidth = lineWidth;
 	}
