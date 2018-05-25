@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. Geoff Vargo
+ * Copyright (c) 2018. Geoff Vargo
  */
 
 package com.vargo.geoff.nestabletextview;
@@ -86,7 +86,7 @@ public class NestableEquation extends NestableTextView {
 				params2.constrainHeight(this.getId(), WRAP_CONTENT);
 				params2.constrainWidth(this.getId(), WRAP_CONTENT);
 
-				View testvee = new gvSqrt(this.getContext(), "blank");
+				View testvee = new gvSqrt(this.getContext(), "blank", 3);
 
 				this.child.addView(testvee);
 

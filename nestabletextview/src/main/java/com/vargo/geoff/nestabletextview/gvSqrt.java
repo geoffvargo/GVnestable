@@ -50,6 +50,8 @@ public class gvSqrt extends View {
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
 
+		// TODO: use rects and quadrilaterals to draw the symbol, not a path.
+
 		Paint color1 = new Paint();
 		color1.setColor(Color.BLACK);
 		color1.setStyle(Paint.Style.FILL);
@@ -63,15 +65,16 @@ public class gvSqrt extends View {
 		p1.rLineTo(-25, 0);
 
 		//// slash-down
-		p1.rLineTo(-36, 76 * hfactor);
+		p1.rLineTo(-34, 76 * hfactor);
 
 		//// bottom of check-mark
-		p1.rLineTo(-1, 1);
-		p1.rLineTo(-3, 2);
-		p1.rLineTo(-2, -1);
+//		p1.rLineTo(-1, 1);
+//		p1.rLineTo(-3, 2);
+//		p1.rLineTo(-2, -1);
+		p1.rLineTo(-6, 1);
 
 		////  backslash-up
-		p1.rLineTo(-21, -36);
+		p1.rLineTo(-22, -36);
 
 		//// backslash-lip underside
 		p1.rLineTo(-7, 5);
@@ -80,13 +83,13 @@ public class gvSqrt extends View {
 		p1.rLineTo(-2, -2);
 
 		//// backslash-lip top
-		p1.rLineTo(12, -11);
+		p1.rLineTo(16, -11);
 
 		//// backslash-down
-		p1.rLineTo(20, 33);
+		p1.rLineTo(21, 32);
 
 		//// slash-up
-		p1.lineTo((xpos) - 31, ypos - 5);
+		p1.lineTo((xpos) - 28, ypos - 5);
 
 		//// top edge of top-bar
 		p1.lineTo(xpos + lineWidth, ypos - 5);
