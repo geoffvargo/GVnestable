@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. Geoff Vargo
+ * Copyright (c) 2018. Geoff Vargo
  */
 
 package com.vargo.geoff.nestabletextview;
@@ -10,7 +10,10 @@ import android.support.constraint.ConstraintSet;
 import android.view.View;
 import android.widget.TextView;
 
-import static android.support.constraint.ConstraintSet.*;
+import static android.support.constraint.ConstraintSet.LEFT;
+import static android.support.constraint.ConstraintSet.PARENT_ID;
+import static android.support.constraint.ConstraintSet.TOP;
+import static android.support.constraint.ConstraintSet.WRAP_CONTENT;
 
 /**
  * Created by geoff on 12/19/2017.
@@ -18,8 +21,9 @@ import static android.support.constraint.ConstraintSet.*;
 
 public class NestableTextView extends ConstraintLayout {
 
-	protected TextView text = null;
+	protected View text = null;
 	protected ConstraintLayout child = null;
+	protected boolean isText = true;
 
 //	ConstraintLayout.LayoutParams layoutParams = new LayoutParams(ConstraintSet.MATCH_CONSTRAINT, ConstraintSet.MATCH_CONSTRAINT);
 
@@ -27,9 +31,14 @@ public class NestableTextView extends ConstraintLayout {
 		super(context);
 
 		this.setId(View.generateViewId());
-		text = new TextView(this.getContext());
-		this.text.setId(View.generateViewId());
-		text.setText(str);
+		if (isText) {
+			text = new TextView(this.getContext());
+			this.text.setId(View.generateViewId());
+			((TextView) text).setText(str);
+		} else {
+			text = new View(this.getContext());
+			this.text.setId(View.generateViewId());
+		}
 		child = new ConstraintLayout(this.getContext());
 		this.child.setId(View.generateViewId());
 
@@ -59,8 +68,14 @@ public class NestableTextView extends ConstraintLayout {
 		this.addView(child);
 	}
 
-	public void addChild(String str) {
-		NestableTextView newChild = new NestableTextView(this.getContext(), str);
-		this.child.addView(newChild);
+//	public void addChild(String str) {
+//		NestableTextView newChild = new NestableTextView(this.getContext(), str, );
+//		this.child.addView(newChild);
+//	}
+
+	public void changeRootView(TextView view) {
+		this.removeViewAt(0);
+		this.text = view;
+		this.addView(this.text, 0);
 	}
 }

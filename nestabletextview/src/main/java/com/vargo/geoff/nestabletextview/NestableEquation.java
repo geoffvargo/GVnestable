@@ -8,6 +8,7 @@ import android.content.Context;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
 import android.view.View;
+import android.widget.TextView;
 
 import static android.support.constraint.ConstraintSet.BOTTOM;
 import static android.support.constraint.ConstraintSet.LEFT;
@@ -66,7 +67,9 @@ public class NestableEquation extends NestableTextView {
 				params2.constrainWidth(this.getId(), WRAP_CONTENT);
 
 				eqNew = new NestableEquation(this.getContext(), "blank", NORMAL);
-				eqNew.text.setTextSize(8);
+				if (eqNew.text.getClass().equals(TextView.class)) {
+					((TextView) eqNew.text).setTextSize(8);
+				}
 				eqNew.setClipChildren(false);
 				this.child.addView(eqNew);
 
@@ -86,9 +89,13 @@ public class NestableEquation extends NestableTextView {
 				params2.constrainHeight(this.getId(), WRAP_CONTENT);
 				params2.constrainWidth(this.getId(), WRAP_CONTENT);
 
-				View testvee = new gvSqrt(this.getContext(), "blank", 3);
+				View testvee = new gvSqrt(this.getContext(), "", 3);
 
 				this.child.addView(testvee);
+//				testvee.draw(this.can);
+//				this.changeRootView(testvee);
+
+				params2.applyTo(this);
 
 				// TODO: set layout constraints for alignment
 

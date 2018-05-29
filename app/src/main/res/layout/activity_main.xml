@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2018. Geoff Vargo
+  -->
+
 <android.support.constraint.ConstraintLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -246,68 +250,5 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:orientation="horizontal">
-		<android.support.constraint.ConstraintLayout
-			android:id="@+id/cl13"
-			android:layout_width="match_parent"
-			android:layout_height="match_parent">
-
-			<ImageView
-				android:id="@+id/iv3"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginBottom="8dp"
-				android:layout_marginTop="8dp"
-				android:adjustViewBounds="false"
-				android:scaleType="matrix"
-				android:scaleY="1.75"
-				android:transformPivotY="20dp"
-				app:layout_constraintBottom_toBottomOf="parent"
-				app:layout_constraintTop_toTopOf="parent"
-				app:srcCompat="@drawable/ic_sqrtophead"/>
-			<ImageView
-				android:id="@+id/iv4"
-				android:layout_width="0dp"
-				android:layout_height="wrap_content"
-				android:layout_marginBottom="8dp"
-				android:layout_marginTop="8dp"
-				android:adjustViewBounds="false"
-				android:scaleType="fitXY"
-				android:scaleY="1.75"
-				android:transformPivotY="20dp"
-				app:layout_constraintBottom_toBottomOf="parent"
-				app:layout_constraintLeft_toRightOf="@+id/iv3"
-				app:layout_constraintRight_toRightOf="@+id/cl11"
-				app:layout_constraintTop_toTopOf="parent"
-				app:srcCompat="@drawable/ic_sqrtoptail"/>
-			<android.support.constraint.ConstraintLayout
-				android:id="@+id/cl11"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginBottom="8dp"
-				app:layout_constraintBottom_toBottomOf="parent"
-				app:layout_constraintRight_toRightOf="parent">
-
-				<android.support.constraint.ConstraintLayout
-					android:id="@+id/cl12"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_marginStart="16dp"
-					app:layout_constraintBaseline_toBaselineOf="parent"
-					app:layout_constraintStart_toStartOf="parent">
-
-					<TextView
-						android:id="@+id/textView2"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:paddingLeft="6dp"
-						android:paddingRight="4dp"
-						android:text="TextViewsdaf"
-						android:textSize="36sp"
-						app:layout_constraintBottom_toBottomOf="parent"
-						app:layout_constraintEnd_toEndOf="parent"
-						app:layout_constraintLeft_toLeftOf="parent"/>
-				</android.support.constraint.ConstraintLayout>
-			</android.support.constraint.ConstraintLayout>
-		</android.support.constraint.ConstraintLayout>
 	</LinearLayout>
 </android.support.constraint.ConstraintLayout>

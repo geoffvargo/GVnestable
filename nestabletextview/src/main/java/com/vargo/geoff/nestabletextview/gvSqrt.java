@@ -12,7 +12,8 @@ import android.graphics.Path;
 import android.view.View;
 
 public class gvSqrt extends View {
-//public class gvSqrt extends NestableTextView {
+	//public class gvSqrt extends android.support.v7.widget.AppCompatTextView {
+	//public class gvSqrt extends NestableTextView {
 	protected float ypos = 22;
 	protected float xpos = 110;
 
@@ -21,21 +22,21 @@ public class gvSqrt extends View {
 
 	public gvSqrt(Context context, String str) {
 		super(context);
-//		super(context, str);
-//		this.layout(0, 0, 0, 0);
+		this.setId(View.generateViewId());
+		this.setWillNotDraw(false);
 	}
 
 	public gvSqrt(Context context, String str, float hfactor) {
 		super(context);
-//		super(context, str);
-//		this.layout(0, 0, 0, 0);
+		this.setWillNotDraw(false);
+		this.setId(View.generateViewId());
 		this.hfactor = hfactor;
 	}
 
 	public gvSqrt(Context context, String str, float hfactor, float lineWidth) {
 		super(context);
-//		super(context, str);
-//		this.layout(0, 0, 0, 0);
+		this.setId(View.generateViewId());
+		this.setWillNotDraw(false);
 		this.hfactor = hfactor;
 		this.lineWidth = lineWidth;
 	}
@@ -50,50 +51,61 @@ public class gvSqrt extends View {
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
 
-		// TODO: use rects and quadrilaterals to draw the symbol, not a path.
+		float x_slashbottom_right, x_2, y_slashbottom_right, y_2;
+		float thickness = 5;
 
 		Paint color1 = new Paint();
 		color1.setColor(Color.BLACK);
 		color1.setStyle(Paint.Style.FILL);
 		color1.setFlags(Paint.ANTI_ALIAS_FLAG);
 
-		Path p1 = new Path();
+		Path topBar = new Path();
+		topBar.moveTo(xpos + lineWidth, ypos);
+		topBar.lineTo(xpos + lineWidth, ypos + thickness);
+		topBar.lineTo(xpos, ypos + thickness);
+		topBar.lineTo(xpos, ypos);
+		topBar.lineTo(xpos + lineWidth, ypos);
+		canvas.drawPath(topBar, color1);
 
-		//// underside of top-bar
-		p1.moveTo(xpos + lineWidth, ypos);
-		p1.lineTo(xpos, ypos);
-		p1.rLineTo(-25, 0);
+		Path slash = new Path();
+		slash.moveTo(xpos, ypos);
+		slash.rLineTo(thickness, 0);
+		slash.rLineTo(-36, 76 * hfactor);
 
-		//// slash-down
-		p1.rLineTo(-34, 76 * hfactor);
+		x_slashbottom_right = xpos + thickness - 36;
+		y_slashbottom_right = ypos + 76 * hfactor;
 
-		//// bottom of check-mark
-//		p1.rLineTo(-1, 1);
-//		p1.rLineTo(-3, 2);
-//		p1.rLineTo(-2, -1);
-		p1.rLineTo(-6, 1);
+		slash.rLineTo(-thickness, 0);
+		slash.lineTo(xpos, ypos);
+		canvas.drawPath(slash, color1);
 
-		////  backslash-up
-		p1.rLineTo(-22, -36);
+		Path backslash = new Path();
+		backslash.moveTo(x_slashbottom_right, y_slashbottom_right - (thickness + 2));
 
-		//// backslash-lip underside
-		p1.rLineTo(-7, 5);
+		float x_backslash_bottomRight = x_slashbottom_right;
+		float y_backslash_bottomRight = y_slashbottom_right - (thickness + 2);
 
-		//// backslash-lip end
-		p1.rLineTo(-2, -2);
+		//// upward right-side
+		backslash.rLineTo(-21, -30);
 
-		//// backslash-lip top
-		p1.rLineTo(16, -11);
+		float x_backslash_topRight = x_backslash_bottomRight - 21;
+		float y_backslash_topRight = y_backslash_bottomRight - 30;
 
-		//// backslash-down
-		p1.rLineTo(21, 32);
+		//// top
+		backslash.lineTo(x_backslash_topRight - thickness - 6, y_backslash_topRight + thickness);
 
-		//// slash-up
-		p1.lineTo((xpos) - 28, ypos - 5);
+		float x_backslash_topLeft = x_backslash_topRight - thickness - 6;
+		float y_backslash_topLeft = y_backslash_topRight + thickness;
 
-		//// top edge of top-bar
-		p1.lineTo(xpos + lineWidth, ypos - 5);
+		backslash.rLineTo(2, 2);
 
-		canvas.drawPath(p1, color1);
+		float x_backslash_lipEnd = x_backslash_topLeft + 2;
+		float y_backslash_lipEnd = y_backslash_topLeft + 2;
+
+		backslash.lineTo(x_backslash_topRight - thickness, y_backslash_topRight + thickness);
+
+		backslash.lineTo(x_slashbottom_right - thickness, y_slashbottom_right);
+
+		canvas.drawPath(backslash, color1);
 	}
 }
