@@ -89,11 +89,11 @@ public class NestableEquation extends NestableTextView {
 				params2.constrainHeight(this.getId(), WRAP_CONTENT);
 				params2.constrainWidth(this.getId(), WRAP_CONTENT);
 
-				View testvee = new gvSqrt(this.getContext(), "", 3);
+				View testvee = new gvSqrt(this.getContext(), "", 3, 50);
 
-				this.child.addView(testvee);
+//				this.child.addView(testvee);
 //				testvee.draw(this.can);
-//				this.changeRootView(testvee);
+				this.changeRootView(testvee);
 
 				params2.applyTo(this);
 
