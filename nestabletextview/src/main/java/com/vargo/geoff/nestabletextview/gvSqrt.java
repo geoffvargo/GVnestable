@@ -17,7 +17,7 @@ public class gvSqrt extends View {
 	protected float ypos = 22;
 	protected float xpos = 110;
 
-	protected float hfactor = 1;
+	protected float lineHeight = 1;
 	protected float lineWidth = 0;
 
 	public gvSqrt(Context context, String str) {
@@ -26,18 +26,18 @@ public class gvSqrt extends View {
 		this.setWillNotDraw(false);
 	}
 
-	public gvSqrt(Context context, String str, float hfactor) {
+	public gvSqrt(Context context, String str, float lineHeight) {
 		super(context);
 		this.setWillNotDraw(false);
 		this.setId(View.generateViewId());
-		this.hfactor = hfactor;
+		this.lineHeight = lineHeight;
 	}
 
-	public gvSqrt(Context context, String str, float hfactor, float lineWidth) {
+	public gvSqrt(Context context, String str, float lineHeight, float lineWidth) {
 		super(context);
 		this.setId(View.generateViewId());
 		this.setWillNotDraw(false);
-		this.hfactor = hfactor;
+		this.lineHeight = lineHeight;
 		this.lineWidth = lineWidth;
 	}
 
@@ -70,10 +70,12 @@ public class gvSqrt extends View {
 		Path slash = new Path();
 		slash.moveTo(xpos, ypos);
 		slash.rLineTo(thickness, 0);
-		slash.rLineTo(-36, 76 * hfactor);
+		slash.rLineTo(-36, 76 + lineHeight);
+//		slash.rLineTo(-36, 76 * lineHeight);
 
 		x_slashbottom_right = xpos + thickness - 36;
-		y_slashbottom_right = ypos + 76 * hfactor;
+		y_slashbottom_right = ypos + 76 + lineHeight;
+//		y_slashbottom_right = ypos + 76 * lineHeight;
 
 		slash.rLineTo(-thickness, 0);
 		slash.lineTo(xpos, ypos);

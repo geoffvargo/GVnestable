@@ -24,8 +24,11 @@ import static com.vargo.geoff.nestabletextview.EqType.NORMAL;
 
 public class NestableEquation extends NestableTextView {
 
+	protected String value = null;
+
 	public NestableEquation(Context context, String str, EqType eqType) {
 		super(context, str);
+		value = str;
 		eqTyper(eqType);
 	}
 
@@ -89,7 +92,11 @@ public class NestableEquation extends NestableTextView {
 				params2.constrainHeight(this.getId(), WRAP_CONTENT);
 				params2.constrainWidth(this.getId(), WRAP_CONTENT);
 
-				View testvee = new gvSqrt(this.getContext(), "", 3, 50);
+				//// Draw sqrt symbol
+				View testvee = new gvSqrt(this.getContext(), "", 35, 50);
+
+				eqNew = new NestableEquation(this.getContext(), "blank", NORMAL);
+				this.child.addView(eqNew);
 
 //				this.child.addView(testvee);
 //				testvee.draw(this.can);
