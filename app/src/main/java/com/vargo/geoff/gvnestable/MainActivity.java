@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2018. Geoff Vargo
+ */
+
 package com.vargo.geoff.gvnestable;
 
 import android.os.Bundle;
@@ -32,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 		eqqie2 = new NestableEquation(this, "blank", EXPONENT);
 		linnie.addView(eqqie2);
 
-		eqqie3 = new NestableEquation(this, "blank", SQRT);
+		eqqie3 = new NestableEquation(this, "asdf", SQRT);
 		linnie2.addView(eqqie3);
 
 		eqqie4 = new NestableEquation(this, "blank", EXPONENT);
