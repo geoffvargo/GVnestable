@@ -33,9 +33,9 @@ public class NestableEquation extends NestableTextView {
 	}
 
 	protected void eqTyper(EqType eqType) {
-		NestableTextView eqNew = null;
-		ConstraintSet params1 = new ConstraintSet();
-		ConstraintSet params2 = new ConstraintSet();
+		NestableTextView eqNew   = null;
+		ConstraintSet    params1 = new ConstraintSet();
+		ConstraintSet    params2 = new ConstraintSet();
 
 		params1.constrainHeight(this.text.getId(), WRAP_CONTENT);
 		params1.constrainWidth(this.text.getId(), WRAP_CONTENT);
@@ -101,9 +101,23 @@ public class NestableEquation extends NestableTextView {
 //				this.child.addView(testvee);
 //				testvee.draw(this.can);
 				this.changeRootView(testvee);
+				params2.constrainHeight(testvee.getId(), WRAP_CONTENT);
+				params2.constrainWidth(testvee.getId(), WRAP_CONTENT);
+
+				params2.connect(testvee.getId(), LEFT, ((ConstraintLayout) testvee.getParent()).getId(), LEFT, 0);
+				params2.connect(testvee.getId(), TOP, ((ConstraintLayout) testvee.getParent()).getId(), TOP, 0);
 
 				params2.applyTo(this);
 
+				params1.connect(eqNew.getId(), LEFT, ((ConstraintLayout) eqNew.getParent()).getId(), LEFT);
+				params1.connect(eqNew.getId(), BOTTOM, ((ConstraintLayout) eqNew.getParent()).getId(), BOTTOM);
+
+				params1.connect(this.child.getId(), LEFT, this.getId(), LEFT);
+				params1.connect(this.child.getId(), BOTTOM, this.getId(), BOTTOM);
+
+				// TODO: constrain baseline to baseline
+
+				params1.applyTo(this.child);
 				// TODO: set layout constraints for alignment
 
 				break;
