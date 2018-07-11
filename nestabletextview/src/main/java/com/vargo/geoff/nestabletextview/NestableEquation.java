@@ -97,7 +97,6 @@ public class NestableEquation extends NestableTextView {
 				eqNew = new NestableEquation(this.getContext(), value, NORMAL);
 				this.child.addView(eqNew);
 
-//				testvee.setLayoutParams(new ViewGroup.LayoutParams(86, 111));
 				this.changeRootView(testvee);
 
 				params2.constrainHeight(testvee.getId(), WRAP_CONTENT);
@@ -105,14 +104,11 @@ public class NestableEquation extends NestableTextView {
 //
 				params2.connect(testvee.getId(), LEFT, this.getId(), LEFT, 0);
 				params2.connect(testvee.getId(), TOP, this.getId(), TOP, 0);
-//				params2.connect(testvee.getId(), RIGHT, this.getId(), RIGHT, 0);
-//				params2.connect(testvee.getId(), BOTTOM, this.getId(), BOTTOM, 0);
 
 				params2.applyTo(this);
+
 				testvee.setLayoutParams(new LayoutParams((int) testvee.getTotalWidth(), (int) testvee.getTotalHeight()));
 
-//				params1.connect(eqNew.getId(), LEFT, ((ConstraintLayout) eqNew.getParent()).getId(), LEFT);
-//				params1.connect(eqNew.getId(), BOTTOM, ((ConstraintLayout) eqNew.getParent()).getId(), BOTTOM);
 				params1.connect(eqNew.getId(), RIGHT, this.getId(), RIGHT);
 				params1.connect(eqNew.getId(), BOTTOM, this.getId(), BOTTOM);
 
@@ -121,8 +117,8 @@ public class NestableEquation extends NestableTextView {
 
 				// TODO: constrain baseline to baseline
 
-//				params1.applyTo(this.child);
 				params1.applyTo(eqNew);
+
 				// TODO: set layout constraints for alignment
 
 				break;
