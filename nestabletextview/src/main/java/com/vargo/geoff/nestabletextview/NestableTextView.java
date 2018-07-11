@@ -118,14 +118,15 @@ public class NestableTextView extends ConstraintLayout {
 	public void changeRootView(View view) {
 		this.removeViewAt(0);
 		this.text = view;
-//		view.requestLayout();
+
 //		params.constrainHeight(this.text.getId(), WRAP_CONTENT);
 //		params.constrainWidth(this.text.getId(), WRAP_CONTENT);
+//
 //		params.connect(this.text.getId(), TOP, this.getId(), TOP, 0);
 //		params.connect(this.text.getId(), LEFT, this.getId(), LEFT, 0);
 
-		this.addView(this.text, 0);
 //		params.applyTo(this);
-//		this.requestLayout();
+
+		this.addView(this.text, 0);
 	}
 }
