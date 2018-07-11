@@ -24,6 +24,7 @@ public class NestableTextView extends ConstraintLayout {
 	protected View text = null;
 	protected ConstraintLayout child = null;
 	protected boolean isText = true;
+	ConstraintSet params = new ConstraintSet();
 
 //	ConstraintLayout.LayoutParams layoutParams = new LayoutParams(ConstraintSet.MATCH_CONSTRAINT, ConstraintSet.MATCH_CONSTRAINT);
 
@@ -85,8 +86,6 @@ public class NestableTextView extends ConstraintLayout {
 		child = new ConstraintLayout(this.getContext());
 		this.child.setId(View.generateViewId());
 
-		ConstraintSet params = new ConstraintSet();
-
 		params.constrainHeight(this.getId(), WRAP_CONTENT);
 		params.constrainWidth(this.getId(), WRAP_CONTENT);
 
@@ -119,6 +118,14 @@ public class NestableTextView extends ConstraintLayout {
 	public void changeRootView(View view) {
 		this.removeViewAt(0);
 		this.text = view;
+//		view.requestLayout();
+//		params.constrainHeight(this.text.getId(), WRAP_CONTENT);
+//		params.constrainWidth(this.text.getId(), WRAP_CONTENT);
+//		params.connect(this.text.getId(), TOP, this.getId(), TOP, 0);
+//		params.connect(this.text.getId(), LEFT, this.getId(), LEFT, 0);
+
 		this.addView(this.text, 0);
+//		params.applyTo(this);
+//		this.requestLayout();
 	}
 }

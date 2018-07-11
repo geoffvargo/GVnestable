@@ -98,26 +98,30 @@ public class NestableEquation extends NestableTextView {
 				eqNew = new NestableEquation(this.getContext(), value, NORMAL);
 				this.child.addView(eqNew);
 
-//				this.child.addView(testvee);
-//				testvee.draw(this.can);
+//				testvee.setLayoutParams(new ViewGroup.LayoutParams(86, 111));
 				this.changeRootView(testvee);
-				params2.constrainHeight(testvee.getId(), WRAP_CONTENT);
-				params2.constrainWidth(testvee.getId(), WRAP_CONTENT);
+//				params2.constrainHeight(testvee.getId(), WRAP_CONTENT);
+//				params2.constrainWidth(testvee.getId(), WRAP_CONTENT);
+//
+//				params2.connect(testvee.getId(), LEFT, this.getId(), LEFT, 0);
+//				params2.connect(testvee.getId(), TOP, this.getId(), TOP, 0);
+//				params2.connect(testvee.getId(), RIGHT, this.getId(), RIGHT, 0);
+//				params2.connect(testvee.getId(), BOTTOM, this.getId(), BOTTOM, 0);
 
-				params2.connect(testvee.getId(), LEFT, ((ConstraintLayout) testvee.getParent()).getId(), LEFT, 0);
-				params2.connect(testvee.getId(), TOP, ((ConstraintLayout) testvee.getParent()).getId(), TOP, 0);
+//				params2.applyTo(this);
 
-				params2.applyTo(this);
+//				params1.connect(eqNew.getId(), LEFT, ((ConstraintLayout) eqNew.getParent()).getId(), LEFT);
+//				params1.connect(eqNew.getId(), BOTTOM, ((ConstraintLayout) eqNew.getParent()).getId(), BOTTOM);
+				params1.connect(eqNew.getId(), RIGHT, this.getId(), RIGHT);
+				params1.connect(eqNew.getId(), BOTTOM, this.getId(), BOTTOM);
 
-				params1.connect(eqNew.getId(), LEFT, ((ConstraintLayout) eqNew.getParent()).getId(), LEFT);
-				params1.connect(eqNew.getId(), BOTTOM, ((ConstraintLayout) eqNew.getParent()).getId(), BOTTOM);
-
-				params1.connect(this.child.getId(), LEFT, this.getId(), LEFT);
-				params1.connect(this.child.getId(), BOTTOM, this.getId(), BOTTOM);
+//				params1.connect(this.child.getId(), LEFT, this.getId(), LEFT);
+//				params1.connect(this.child.getId(), BOTTOM, this.getId(), BOTTOM);
 
 				// TODO: constrain baseline to baseline
 
-				params1.applyTo(this.child);
+//				params1.applyTo(this.child);
+				params1.applyTo(eqNew);
 				// TODO: set layout constraints for alignment
 
 				break;
