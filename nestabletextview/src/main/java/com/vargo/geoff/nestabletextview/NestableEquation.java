@@ -43,7 +43,7 @@ public class NestableEquation extends NestableTextView {
 			case NORMAL:
 				params1.constrainHeight(this.getId(), WRAP_CONTENT);
 				params1.constrainHeight(this.getId(), WRAP_CONTENT);
-				
+
 				params1.connect(this.text.getId(), TOP, this.getId(), TOP, 0);
 				params1.connect(this.text.getId(), LEFT, this.getId(), LEFT, 0);
 
@@ -92,34 +92,36 @@ public class NestableEquation extends NestableTextView {
 			case ORDINAL:
 				break;
 			case SQRT:
-				params2.constrainHeight(this.getId(), WRAP_CONTENT);
-				params2.constrainWidth(this.getId(), WRAP_CONTENT);
+				ConstraintSet radical = new ConstraintSet();
+				ConstraintSet radicand = new ConstraintSet();
+
+				radical.constrainHeight(this.getId(), WRAP_CONTENT);
+				radical.constrainWidth(this.getId(), WRAP_CONTENT);
+
+				radical.constrainHeight(this.child.getId(), WRAP_CONTENT);
+				radical.constrainWidth(this.child.getId(), WRAP_CONTENT);
 
 				eqNew = new NestableEquation(this.getContext(), value, NORMAL);
 				this.child.addView(eqNew);
 
 				//// Draw sqrt symbol
-				gvSqrt testvee = new gvSqrt(this.getContext(), "", 0, 50);
+				gvSqrt testvee = new gvSqrt(this.getContext(), "", eqNew.text.getMeasuredHeight(), eqNew.text.getMeasuredWidth() + 56);
 				this.changeRootView(testvee);
 
-				params2.constrainHeight(testvee.getId(), WRAP_CONTENT);
-				params2.constrainWidth(testvee.getId(), WRAP_CONTENT);
+				radical.constrainHeight(testvee.getId(), WRAP_CONTENT);
+				radical.constrainWidth(testvee.getId(), WRAP_CONTENT);
 
-				params2.connect(testvee.getId(), LEFT, this.getId(), LEFT, 0);
-				params2.connect(testvee.getId(), TOP, this.getId(), TOP, 0);
+				radical.constrainHeight(eqNew.getId(), WRAP_CONTENT);
+				radical.constrainWidth(eqNew.getId(), WRAP_CONTENT);
 
-				params2.applyTo(this);
+				radical.connect(testvee.getId(), LEFT, this.getId(), LEFT, 0);
+				radical.connect(testvee.getId(), TOP, this.getId(), TOP, 0);
 
+				radical.connect(this.child.getId(), RIGHT, this.getId(), RIGHT, 0);
+				radical.connect(this.child.getId(), BOTTOM, this.getId(), BOTTOM, 0);
+
+				radical.applyTo(this);
 				testvee.setLayoutParams(new LayoutParams((int) testvee.getTotalWidth(), (int) testvee.getTotalHeight()));
-
-				params1.connect(eqNew.getId(), RIGHT, this.getId(), RIGHT);
-				params1.connect(eqNew.getId(), BOTTOM, this.getId(), BOTTOM);
-
-				// TODO: constrain baseline to baseline
-
-				params1.applyTo(eqNew);
-
-				// TODO: set layout constraints for alignment
 
 				break;
 		}

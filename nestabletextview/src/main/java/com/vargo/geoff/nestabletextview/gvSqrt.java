@@ -36,15 +36,20 @@ public class gvSqrt extends View {
 
 		this.setId(View.generateViewId());
 		this.setWillNotDraw(false);
+
+		lineHeight = (lineHeight >= 76) ? lineHeight - 76 : 0;
+
 		this.lineHeight = lineHeight;
 		this.lineWidth = lineWidth;
 		this.totalWidth = lineWidth + 36;
 		this.totalHeight = lineHeight + 76;
 
+//		lineHeight -= 30;
 		float x_slashbottom_right, x_2, y_slashbottom_right, y_2;
 		thickness = 5;
 
 		Path symbol = new Path();
+
 		Path topBar = new Path();
 		topBar.moveTo(xpos + lineWidth, ypos);
 		topBar.lineTo(xpos + lineWidth, ypos + thickness);
@@ -95,6 +100,7 @@ public class gvSqrt extends View {
 		backslash.lineTo(x_slashbottom_right - thickness, y_slashbottom_right);
 
 		backslash.offset(x_backslash_bottomRight + 31 - thickness, 0, null);
+
 		symbol.op(backslash, Path.Op.UNION);
 
 		mSqrt = new ShapeDrawable();

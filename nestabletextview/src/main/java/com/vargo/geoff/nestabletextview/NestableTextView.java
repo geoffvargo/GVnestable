@@ -14,6 +14,7 @@ import static android.support.constraint.ConstraintSet.LEFT;
 import static android.support.constraint.ConstraintSet.PARENT_ID;
 import static android.support.constraint.ConstraintSet.TOP;
 import static android.support.constraint.ConstraintSet.WRAP_CONTENT;
+import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 
 /**
  * Created by geoff on 12/19/2017.
@@ -24,9 +25,9 @@ public class NestableTextView extends ConstraintLayout {
 	protected View text = null;
 	protected ConstraintLayout child = null;
 	protected boolean isText = true;
+	protected int neqWidth = 0;
+	protected int neqHeight = 0;
 	ConstraintSet params = new ConstraintSet();
-
-//	ConstraintLayout.LayoutParams layoutParams = new LayoutParams(ConstraintSet.MATCH_CONSTRAINT, ConstraintSet.MATCH_CONSTRAINT);
 
 	public NestableTextView(Context context, String str, boolean isText) {
 		super(context);
@@ -38,10 +39,16 @@ public class NestableTextView extends ConstraintLayout {
 			text = new TextView(this.getContext());
 			this.text.setId(View.generateViewId());
 			((TextView) text).setText(str);
+//			this.neqHeight = (int) (((TextView) this.text).getPaint().getFontMetrics().bottom - ((TextView) this.text).getPaint().getFontMetrics().top);
+//			this.neqWidth = (int) (((TextView) this.text).getPaint().getFontMetrics().right - ((TextView) this.text).getPaint().getFontMetrics().top);
 		} else {
 			text = new View(this.getContext());
 			this.text.setId(View.generateViewId());
 		}
+		this.text.measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
+		this.neqWidth = this.text.getMeasuredWidth();
+		this.neqHeight = this.text.getMeasuredHeight();
+
 		child = new ConstraintLayout(this.getContext());
 		this.child.setId(View.generateViewId());
 
@@ -75,6 +82,7 @@ public class NestableTextView extends ConstraintLayout {
 		super(context);
 
 		this.setId(View.generateViewId());
+
 		if (this.isText) {
 			text = new TextView(this.getContext());
 			this.text.setId(View.generateViewId());
@@ -83,8 +91,16 @@ public class NestableTextView extends ConstraintLayout {
 			text = new View(this.getContext());
 			this.text.setId(View.generateViewId());
 		}
+
 		child = new ConstraintLayout(this.getContext());
+		ConstraintSet cset = new ConstraintSet();
 		this.child.setId(View.generateViewId());
+		cset.constrainHeight(child.getId(), MATCH_PARENT);
+		cset.constrainWidth(child.getId(), MATCH_PARENT);
+		child.setConstraintSet(cset);
+		this.text.measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
+		this.neqWidth = this.text.getMeasuredWidth();
+		this.neqHeight = this.text.getMeasuredHeight();
 
 		params.constrainHeight(this.getId(), WRAP_CONTENT);
 		params.constrainWidth(this.getId(), WRAP_CONTENT);
@@ -108,6 +124,14 @@ public class NestableTextView extends ConstraintLayout {
 
 		this.addView(text);
 		this.addView(child);
+	}
+
+	public int getNeqWidth() {
+		return neqWidth;
+	}
+
+	public int getNeqHeight() {
+		return neqHeight;
 	}
 
 //	public void addChild(String str) {
