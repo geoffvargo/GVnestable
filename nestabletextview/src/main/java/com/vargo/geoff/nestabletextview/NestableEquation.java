@@ -43,10 +43,13 @@ public class NestableEquation extends NestableTextView {
 			case NORMAL:
 				params1.constrainHeight(this.getId(), WRAP_CONTENT);
 				params1.constrainHeight(this.getId(), WRAP_CONTENT);
+				
 				params1.connect(this.text.getId(), TOP, this.getId(), TOP, 0);
 				params1.connect(this.text.getId(), LEFT, this.getId(), LEFT, 0);
+
 				params1.constrainHeight(this.child.getId(), 0);
 				params1.constrainWidth(this.child.getId(), 0);
+
 				params1.applyTo(this);
 				break;
 			case FRACTION:
@@ -58,13 +61,14 @@ public class NestableEquation extends NestableTextView {
 
 				params1.constrainHeight(this.child.getId(), WRAP_CONTENT);
 				params1.constrainWidth(this.child.getId(), WRAP_CONTENT);
+
 				params1.connect(this.child.getId(), TOP, this.text.getId(), BOTTOM, 0);
 				params1.connect(this.child.getId(), LEFT, PARENT_ID, LEFT);
+
 				params1.applyTo(this);
+
 				break;
 			case EXPONENT:
-//				this.setClipChildren(false);
-
 				params2.constrainHeight(this.getId(), WRAP_CONTENT);
 				params2.constrainWidth(this.getId(), WRAP_CONTENT);
 
@@ -91,17 +95,16 @@ public class NestableEquation extends NestableTextView {
 				params2.constrainHeight(this.getId(), WRAP_CONTENT);
 				params2.constrainWidth(this.getId(), WRAP_CONTENT);
 
-				//// Draw sqrt symbol
-				gvSqrt testvee = new gvSqrt(this.getContext(), "", 0, 50);
-
 				eqNew = new NestableEquation(this.getContext(), value, NORMAL);
 				this.child.addView(eqNew);
 
+				//// Draw sqrt symbol
+				gvSqrt testvee = new gvSqrt(this.getContext(), "", 0, 50);
 				this.changeRootView(testvee);
 
 				params2.constrainHeight(testvee.getId(), WRAP_CONTENT);
 				params2.constrainWidth(testvee.getId(), WRAP_CONTENT);
-//
+
 				params2.connect(testvee.getId(), LEFT, this.getId(), LEFT, 0);
 				params2.connect(testvee.getId(), TOP, this.getId(), TOP, 0);
 
@@ -111,9 +114,6 @@ public class NestableEquation extends NestableTextView {
 
 				params1.connect(eqNew.getId(), RIGHT, this.getId(), RIGHT);
 				params1.connect(eqNew.getId(), BOTTOM, this.getId(), BOTTOM);
-
-//				params1.connect(this.child.getId(), LEFT, this.getId(), LEFT);
-//				params1.connect(this.child.getId(), BOTTOM, this.getId(), BOTTOM);
 
 				// TODO: constrain baseline to baseline
 
