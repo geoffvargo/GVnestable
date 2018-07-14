@@ -10,6 +10,7 @@ import android.support.constraint.ConstraintSet;
 import android.view.View;
 import android.widget.TextView;
 
+import static android.graphics.Color.BLACK;
 import static android.support.constraint.ConstraintSet.LEFT;
 import static android.support.constraint.ConstraintSet.PARENT_ID;
 import static android.support.constraint.ConstraintSet.TOP;
@@ -34,14 +35,17 @@ public class NestableTextView extends ConstraintLayout {
 
 		this.isText = isText;
 		this.setId(View.generateViewId());
+//		this.setForegroundTintMode(SRC_ATOP);
 
 		if (this.isText) {
 			text = new TextView(this.getContext());
 			this.text.setId(View.generateViewId());
 			((TextView) text).setText(str);
+			((TextView) text).setTextColor(BLACK);
 		} else {
 			text = new View(this.getContext());
 			this.text.setId(View.generateViewId());
+			((TextView) text).setTextColor(BLACK);
 		}
 
 		//// Get and record calculated dimensions
@@ -72,6 +76,8 @@ public class NestableTextView extends ConstraintLayout {
 
 		params.applyTo(this);
 
+//		this.setcol
+
 		this.addView(text);
 		this.addView(child);
 	}
@@ -85,9 +91,11 @@ public class NestableTextView extends ConstraintLayout {
 			text = new TextView(this.getContext());
 			this.text.setId(View.generateViewId());
 			((TextView) text).setText(str);
+			((TextView) text).setTextColor(BLACK);
 		} else {
 			text = new View(this.getContext());
 			this.text.setId(View.generateViewId());
+			((TextView) text).setTextColor(BLACK);
 		}
 
 		child = new ConstraintLayout(this.getContext());

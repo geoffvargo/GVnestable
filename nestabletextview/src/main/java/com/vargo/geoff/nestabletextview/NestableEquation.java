@@ -105,7 +105,7 @@ public class NestableEquation extends NestableTextView {
 				this.child.addView(eqNew);
 
 				//// Draw sqrt symbol
-				gvSqrt testvee = new gvSqrt(this.getContext(), "", eqNew.text.getMeasuredHeight(), eqNew.text.getMeasuredWidth() + 56);
+				gvSqrt testvee = new gvSqrt(this.getContext(), "", eqNew.text.getMeasuredHeight(), eqNew.text.getMeasuredWidth() + 36);
 				this.changeRootView(testvee);
 
 				radical.constrainHeight(testvee.getId(), WRAP_CONTENT);

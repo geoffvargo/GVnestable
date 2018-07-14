@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 
 import com.vargo.geoff.nestabletextview.NestableEquation;
 
+import static com.vargo.geoff.nestabletextview.EqType.EXPONENT;
 import static com.vargo.geoff.nestabletextview.EqType.FRACTION;
 import static com.vargo.geoff.nestabletextview.EqType.SQRT;
 
@@ -36,9 +37,9 @@ public class MainActivity extends AppCompatActivity {
 //		sqrty.setLayoutParams(new ViewGroup.LayoutParams(200, 200));
 //		linnie.addView(sqrty);
 
-//		eqqie2 = new NestableEquation(this, "blank", EXPONENT);
-//		linnie2.addView(eqqie2);
-//
+		eqqie2 = new NestableEquation(this, "blank", EXPONENT);
+		linnie2.addView(eqqie2);
+
 		eqqie3 = new NestableEquation(this, "asdf", SQRT);
 		linnie.addView(eqqie3);
 //
