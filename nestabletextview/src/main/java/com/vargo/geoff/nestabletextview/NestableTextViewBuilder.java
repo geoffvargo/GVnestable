@@ -11,6 +11,9 @@ public class NestableTextViewBuilder {
 	private String str;
 	private boolean isText = false;
 
+	public NestableTextViewBuilder() {
+	}
+
 	public NestableTextViewBuilder setContext(Context context) {
 		this.context = context;
 		return this;

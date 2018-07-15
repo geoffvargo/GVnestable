@@ -55,7 +55,7 @@ public class NestableEquation extends NestableTextView {
 				params1.applyTo(this);
 				break;
 			case FRACTION:
-				eqNew = new NestableEquation(this.getContext(), "blank", NORMAL);
+				eqNew = new NestableEquationBuilder().setContext(this.getContext()).setStr("blank").setEqType(NORMAL).createNestableEquation();
 
 				this.child.addView(eqNew);
 				params1.connect(this.getId(), TOP, PARENT_ID, BOTTOM, 0);
@@ -74,7 +74,7 @@ public class NestableEquation extends NestableTextView {
 				params2.constrainHeight(this.getId(), WRAP_CONTENT);
 				params2.constrainWidth(this.getId(), WRAP_CONTENT);
 
-				eqNew = new NestableEquation(this.getContext(), "blank", NORMAL);
+				eqNew = new NestableEquationBuilder().setContext(this.getContext()).setStr("blank").setEqType(NORMAL).createNestableEquation();
 				if (eqNew.text.getClass().equals(TextView.class)) {
 					((TextView) eqNew.text).setTextSize(8);
 				}
@@ -103,7 +103,7 @@ public class NestableEquation extends NestableTextView {
 				radical.constrainHeight(this.child.getId(), WRAP_CONTENT);
 				radical.constrainWidth(this.child.getId(), WRAP_CONTENT);
 
-				eqNew = new NestableEquation(this.getContext(), value, NORMAL);
+				eqNew = new NestableEquationBuilder().setContext(this.getContext()).setStr(value).setEqType(NORMAL).createNestableEquation();
 				this.child.addView(eqNew);
 
 				//// Draw sqrt symbol

@@ -30,6 +30,10 @@ public class NestableTextView extends ConstraintLayout {
 	protected int neqHeight = 0;
 	protected ConstraintSet params = new ConstraintSet();
 
+	public NestableTextView(Context context) {
+		super(context);
+	}
+
 	public NestableTextView(Context context, String str, boolean isText) {
 		super(context);
 
