@@ -24,14 +24,16 @@ import static com.vargo.geoff.nestabletextview.EqType.NORMAL;
 public class NestableEquation extends NestableTextView {
 
 	protected String value = "";
+	private EqType eqType;
 
 	public NestableEquation(Context context, String str, EqType eqType) {
 		super(context, str);
 		value = str;
-		eqTyper(eqType);
+		this.eqType = eqType;
+		eqTyper();
 	}
 
-	protected void eqTyper(EqType eqType) {
+	protected void eqTyper() {
 		NestableTextView eqNew   = null;
 		ConstraintSet    params1 = new ConstraintSet();
 		ConstraintSet    params2 = new ConstraintSet();
@@ -39,7 +41,7 @@ public class NestableEquation extends NestableTextView {
 		params1.constrainHeight(this.text.getId(), WRAP_CONTENT);
 		params1.constrainWidth(this.text.getId(), WRAP_CONTENT);
 
-		switch (eqType) {
+		switch (this.eqType) {
 			case NORMAL:
 				params1.constrainHeight(this.getId(), WRAP_CONTENT);
 				params1.constrainHeight(this.getId(), WRAP_CONTENT);
@@ -125,5 +127,20 @@ public class NestableEquation extends NestableTextView {
 
 				break;
 		}
+	}
+
+	public EqType getEqType() {
+		return eqType;
+	}
+
+	public void setEqType(EqType eqType) {
+		this.eqType = eqType;
+	}
+
+	public void setChildEqType(EqType eqType) {
+	}
+
+	public NestableEquation getNText() {
+		return (NestableEquation) this.text;
 	}
 }

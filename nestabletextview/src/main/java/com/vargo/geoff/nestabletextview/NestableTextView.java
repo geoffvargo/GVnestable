@@ -135,6 +135,14 @@ public class NestableTextView extends ConstraintLayout {
 		this.addView(child);
 	}
 
+	public View getNText() {
+		return text;
+	}
+
+	public ConstraintLayout getChild() {
+		return child;
+	}
+
 	public int getNeqWidth() {
 		return neqWidth;
 	}
