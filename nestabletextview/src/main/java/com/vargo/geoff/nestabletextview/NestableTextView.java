@@ -33,9 +33,7 @@ public class NestableTextView extends ConstraintLayout {
 	public NestableTextView(Context context, String str, boolean isText) {
 		super(context);
 
-		this.isText = isText;
 		this.setId(View.generateViewId());
-//		this.setForegroundTintMode(SRC_ATOP);
 
 		if (this.isText) {
 			text = new TextView(this.getContext());
@@ -48,13 +46,18 @@ public class NestableTextView extends ConstraintLayout {
 			((TextView) text).setTextColor(BLACK);
 		}
 
-		//// Get and record calculated dimensions
+		child = new ConstraintLayout(this.getContext());
+
+		ConstraintSet cset = new ConstraintSet();
+		this.child.setId(View.generateViewId());
+
+		cset.constrainHeight(child.getId(), MATCH_PARENT);
+		cset.constrainWidth(child.getId(), MATCH_PARENT);
+		child.setConstraintSet(cset);
+
 		this.text.measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
 		this.neqWidth = this.text.getMeasuredWidth();
 		this.neqHeight = this.text.getMeasuredHeight();
-
-		child = new ConstraintLayout(this.getContext());
-		this.child.setId(View.generateViewId());
 
 		params.constrainHeight(this.getId(), WRAP_CONTENT);
 		params.constrainWidth(this.getId(), WRAP_CONTENT);
@@ -76,12 +79,11 @@ public class NestableTextView extends ConstraintLayout {
 
 		params.applyTo(this);
 
-//		this.setcol
-
 		this.addView(text);
 		this.addView(child);
 	}
 
+/*
 	public NestableTextView(Context context, String str) {
 		super(context);
 
@@ -134,6 +136,7 @@ public class NestableTextView extends ConstraintLayout {
 		this.addView(text);
 		this.addView(child);
 	}
+*/
 
 	public View getNText() {
 		return text;

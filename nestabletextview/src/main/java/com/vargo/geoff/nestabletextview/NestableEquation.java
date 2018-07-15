@@ -27,7 +27,7 @@ public class NestableEquation extends NestableTextView {
 	private EqType eqType;
 
 	public NestableEquation(Context context, String str, EqType eqType) {
-		super(context, str);
+		super(context, str, false);
 		value = str;
 		this.eqType = eqType;
 		eqTyper();
