@@ -172,6 +172,11 @@ public class NestableEquation extends NestableTextView {
 	public void setChildEqType(EqType eqType) {
 	}
 
+	/**
+	 * Gets nest text.
+	 *
+	 * @return the nest text
+	 */
 	public NestableEquation getNestText() {
 		return (NestableEquation) this.text;
 	}
