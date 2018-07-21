@@ -20,20 +20,53 @@ import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 /**
  * Created by geoff on 12/19/2017.
  */
-
 public class NestableTextView extends ConstraintLayout {
 
+	/**
+	 * The Text.
+	 */
 	protected View text = null;
+	/**
+	 * The Child.
+	 */
 	protected ConstraintLayout child = null;
+	/**
+	 * The Is text.
+	 */
 	protected boolean isText = true;
+	/**
+	 * The Neq width.
+	 */
 	protected int neqWidth = 0;
+	/**
+	 * The Neq height.
+	 */
 	protected int neqHeight = 0;
+	/**
+	 * The Params.
+	 */
 	protected ConstraintSet params = new ConstraintSet();
 
+	/**
+	 * Instantiates a new Nestable text view.
+	 *
+	 * @param context
+	 * 		the context
+	 */
 	public NestableTextView(Context context) {
 		super(context);
 	}
 
+	/**
+	 * Instantiates a new Nestable text view.
+	 *
+	 * @param context
+	 * 		the context
+	 * @param str
+	 * 		the str
+	 * @param isText
+	 * 		the is text
+	 */
 	public NestableTextView(Context context, String str, boolean isText) {
 		super(context);
 
@@ -142,22 +175,48 @@ public class NestableTextView extends ConstraintLayout {
 	}
 */
 
-	public View getNText() {
+	/**
+	 * Gets nest text.
+	 *
+	 * @return the nest text
+	 */
+	public View getNestText() {
 		return text;
 	}
 
+	/**
+	 * Gets child.
+	 *
+	 * @return the child
+	 */
 	public ConstraintLayout getChild() {
 		return child;
 	}
 
+	/**
+	 * Gets neq width.
+	 *
+	 * @return the neq width
+	 */
 	public int getNeqWidth() {
 		return neqWidth;
 	}
 
+	/**
+	 * Gets neq height.
+	 *
+	 * @return the neq height
+	 */
 	public int getNeqHeight() {
 		return neqHeight;
 	}
 
+	/**
+	 * Change root view.
+	 *
+	 * @param view
+	 * 		the view
+	 */
 	public void changeRootView(View view) {
 		this.removeViewAt(0);
 

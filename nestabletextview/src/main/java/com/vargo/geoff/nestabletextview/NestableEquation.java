@@ -20,12 +20,24 @@ import static com.vargo.geoff.nestabletextview.EqType.NORMAL;
 /**
  * Created by geoff on 12/21/2017.
  */
-
 public class NestableEquation extends NestableTextView {
 
+	/**
+	 * The Value.
+	 */
 	protected String value = "";
 	private EqType eqType;
 
+	/**
+	 * Instantiates a new Nestable equation.
+	 *
+	 * @param context
+	 * 		the context
+	 * @param str
+	 * 		the str
+	 * @param eqType
+	 * 		the eq type
+	 */
 	public NestableEquation(Context context, String str, EqType eqType) {
 		super(context, str, false);
 		value = str;
@@ -33,6 +45,9 @@ public class NestableEquation extends NestableTextView {
 		eqTyper();
 	}
 
+	/**
+	 * Eq typer.
+	 */
 	protected void eqTyper() {
 		NestableTextView eqNew   = null;
 		ConstraintSet    params1 = new ConstraintSet();
@@ -129,18 +144,35 @@ public class NestableEquation extends NestableTextView {
 		}
 	}
 
+	/**
+	 * Gets eq type.
+	 *
+	 * @return the eq type
+	 */
 	public EqType getEqType() {
 		return eqType;
 	}
 
+	/**
+	 * Sets eq type.
+	 *
+	 * @param eqType
+	 * 		the eq type
+	 */
 	public void setEqType(EqType eqType) {
 		this.eqType = eqType;
 	}
 
+	/**
+	 * Sets child eq type.
+	 *
+	 * @param eqType
+	 * 		the eq type
+	 */
 	public void setChildEqType(EqType eqType) {
 	}
 
-	public NestableEquation getNText() {
+	public NestableEquation getNestText() {
 		return (NestableEquation) this.text;
 	}
 }
