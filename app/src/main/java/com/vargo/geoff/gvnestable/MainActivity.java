@@ -42,8 +42,9 @@ public class MainActivity extends AppCompatActivity {
 		linnie2.addView(eqqie2);
 
 		eqqie3 = new NestableEquationBuilder().setContext(this).setStr("asdf").setEqType(SQRT).createNestableEquation();
-		linnie.addView(eqqie3);
-//
+//		linnie.addView(eqqie3);
+		eqqie2.addChild(eqqie3);
+
 //		eqqie4 = new NestableEquation(this, "blank", EXPONENT);
 
 	}
