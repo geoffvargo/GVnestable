@@ -83,8 +83,8 @@ public class NestableEquation extends NestableTextView {
 				params1.applyTo(this);
 				break;
 			case FRACTION:
-				// TODO: rewrite the 'FRACTION' section to handle non-text operands
 				eqNew = new NestableEquationBuilder().setContext(this.getContext()).setStr("blank").setEqType(NORMAL).createNestableEquation();
+				// TODO: rewrite the 'FRACTION' section to handle non-text operands HERE
 
 				this.child.addView(eqNew);
 				params1.connect(this.getId(), TOP, PARENT_ID, BOTTOM, 0);
@@ -100,7 +100,6 @@ public class NestableEquation extends NestableTextView {
 
 				break;
 			case EXPONENT:
-				// TODO: rewrite the 'EXPONENT' section to handle non-text operands
 				params2.constrainHeight(this.getId(), WRAP_CONTENT);
 				params2.constrainWidth(this.getId(), WRAP_CONTENT);
 
@@ -108,6 +107,7 @@ public class NestableEquation extends NestableTextView {
 				if (eqNew.text.getClass().equals(TextView.class)) {
 					((TextView) eqNew.text).setTextSize(8);
 				}
+				// TODO: rewrite the 'EXPONENT' section to handle non-text operands HERE
 				eqNew.setClipChildren(false);
 				this.child.addView(eqNew);
 
