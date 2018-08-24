@@ -23,6 +23,7 @@ import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
  * Created by geoff on 12/19/2017.
  */
 public class NestableTextView extends ConstraintLayout {
+	// TODO: create flag for blank 'expr'
 
 	/**
 	 * The Text.
