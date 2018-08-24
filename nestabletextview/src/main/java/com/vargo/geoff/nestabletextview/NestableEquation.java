@@ -5,9 +5,7 @@
 package com.vargo.geoff.nestabletextview;
 
 import android.content.Context;
-import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
-import android.widget.TextView;
 
 import static android.support.constraint.ConstraintSet.BOTTOM;
 import static android.support.constraint.ConstraintSet.LEFT;
@@ -16,6 +14,7 @@ import static android.support.constraint.ConstraintSet.RIGHT;
 import static android.support.constraint.ConstraintSet.TOP;
 import static android.support.constraint.ConstraintSet.WRAP_CONTENT;
 import static com.vargo.geoff.nestabletextview.EqType.NORMAL;
+import static com.vargo.geoff.nestabletextview.EqType.NULL;
 import static com.vargo.geoff.nestabletextview.EqType.SQRT;
 
 /**
@@ -35,7 +34,9 @@ public class NestableEquation extends NestableTextView {
 	 * The Params 2.
 	 */
 	ConstraintSet params2 = new ConstraintSet();
+	ConstraintSet params3 = new ConstraintSet();
 	private EqType eqType;
+	private EqType childEqType = NULL;
 
 	/**
 	 * Instantiates a new Nestable equation.
@@ -45,13 +46,13 @@ public class NestableEquation extends NestableTextView {
 	 * @param str
 	 * 		the str
 	 * @param eqType
-	 * 		the eq type
+	 * @param childType
 	 */
-	public NestableEquation(Context context, String str, EqType eqType) {
+	public NestableEquation(Context context, String str, EqType eqType, EqType childType) {
 		super(context, str, false);
 		value = str;
 		this.eqType = eqType;
-		eqTyper(this.eqType, this.eqType);
+		eqTyper(this.eqType, childType);
 	}
 
 	/**
@@ -83,10 +84,10 @@ public class NestableEquation extends NestableTextView {
 				params1.applyTo(this);
 				break;
 			case FRACTION:
-				eqNew = new NestableEquationBuilder().setContext(this.getContext()).setStr("blank").setEqType(NORMAL).createNestableEquation();
-				// TODO: rewrite the 'FRACTION' section to handle non-text operands HERE
+				eqNew = new NestableEquationBuilder().setContext(this.getContext()).setStr("blank").setEqType(childType).createNestableEquation();
 
 				this.child.addView(eqNew);
+
 				params1.connect(this.getId(), TOP, PARENT_ID, BOTTOM, 0);
 				params1.connect(this.text.getId(), TOP, this.getId(), TOP, 0);
 
@@ -103,12 +104,17 @@ public class NestableEquation extends NestableTextView {
 				params2.constrainHeight(this.getId(), WRAP_CONTENT);
 				params2.constrainWidth(this.getId(), WRAP_CONTENT);
 
-				eqNew = new NestableEquationBuilder().setContext(this.getContext()).setStr("").setEqType(NORMAL).createNestableEquation();
-				if (eqNew.text.getClass().equals(TextView.class)) {
-					((TextView) eqNew.text).setTextSize(8);
-				}
-				// TODO: rewrite the 'EXPONENT' section to handle non-text operands HERE
-				eqNew.setClipChildren(false);
+				// Create NestableEquation for child
+				eqNew = new NestableEquationBuilder().setContext(this.getContext()).setStr("blank").setEqType(childType).createNestableEquation();
+
+				// Set the pivot point to (0, 0) for scaling down eqNew
+				eqNew.setPivotX(0);
+				eqNew.setPivotY(0);
+
+				// Scale down eqNew to superscript size
+				eqNew.setScaleX(0.5f);
+				eqNew.setScaleY(0.5f);
+
 				this.child.addView(eqNew);
 
 				params2.connect(this.child.getId(), LEFT, this.text.getId(), RIGHT, 0);
@@ -116,8 +122,8 @@ public class NestableEquation extends NestableTextView {
 				params2.constrainHeight(this.child.getId(), WRAP_CONTENT);
 				params2.constrainWidth(this.child.getId(), WRAP_CONTENT);
 
-				params2.connect(eqNew.getId(), TOP, ((ConstraintLayout) eqNew.getParent()).getId(), TOP, 0);
-				params2.connect(eqNew.getId(), LEFT, ((ConstraintLayout) eqNew.getParent()).getId(), LEFT, 0);
+				params2.connect(eqNew.getId(), LEFT, this.child.getId(), RIGHT, 0);
+				params2.connect(eqNew.getId(), TOP, this.child.getId(), TOP, 0);
 
 				params2.applyTo(this);
 				break;
@@ -134,6 +140,7 @@ public class NestableEquation extends NestableTextView {
 				radical.constrainWidth(this.child.getId(), WRAP_CONTENT);
 
 				eqNew = new NestableEquationBuilder().setContext(this.getContext()).setStr(value).setEqType(NORMAL).createNestableEquation();
+
 				this.child.addView(eqNew);
 
 				//// Draw sqrt symbol
@@ -156,6 +163,8 @@ public class NestableEquation extends NestableTextView {
 				testvee.setLayoutParams(new LayoutParams((int) testvee.getTotalWidth(), (int) testvee.getTotalHeight()));
 
 				break;
+			case NULL:
+				break;
 		}
 	}
 
@@ -174,7 +183,7 @@ public class NestableEquation extends NestableTextView {
 			case ORDINAL:
 				break;
 			case SQRT:
-				nChild = new NestableEquation(this.getContext(), "", SQRT);
+				nChild = new NestableEquation(this.getContext(), "", SQRT, NULL);
 				break;
 		}
 

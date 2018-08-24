@@ -31,19 +31,22 @@ public class MainActivity extends AppCompatActivity {
 		linnie = findViewById(R.id.linnie);
 		LinearLayout linnie2 = findViewById(R.id.linnie2);
 
-		eqqie = new NestableEquationBuilder().setContext(this).setStr("blank").setEqType(FRACTION).createNestableEquation();
+//		eqqie = new NestableEquationBuilder().setContext(this).setStr("blank").setEqType(FRACTION).createNestableEquation();
+		eqqie = new NestableEquationBuilder().setContext(this).setStr("blank").setEqType(FRACTION).setChildType(SQRT).createNestableEquation();
+//		eqqie = new NestableEquationBuilder().setContext(this).setStr("blank").setEqType(FRACTION).createNestableEquation();
 		linnie.addView(eqqie);
 
 //		View sqrty = new gvSqrt(this, "", 35, 50);
 //		sqrty.setLayoutParams(new ViewGroup.LayoutParams(200, 200));
 //		linnie.addView(sqrty);
 
-		eqqie2 = new NestableEquationBuilder().setContext(this).setStr("blank").setEqType(EXPONENT).createNestableEquation();
+//		eqqie2 = new NestableEquationBuilder().setContext(this).setStr("blank").setEqType(EXPONENT).setChildType(NORMAL).createNestableEquation();
+		eqqie2 = new NestableEquationBuilder().setContext(this).setStr("blank").setEqType(EXPONENT).setChildType(SQRT).createNestableEquation();
 		linnie2.addView(eqqie2);
 
-		eqqie3 = new NestableEquationBuilder().setContext(this).setStr("asdf").setEqType(SQRT).createNestableEquation();
-//		linnie.addView(eqqie3);
-		eqqie2.addChild(eqqie3);
+//		eqqie3 = new NestableEquationBuilder().setContext(this).setStr("asdf").setEqType(SQRT).createNestableEquation();
+////		linnie.addView(eqqie3);
+//		eqqie2.addChild(eqqie3);
 
 //		eqqie4 = new NestableEquation(this, "blank", EXPONENT);
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. Geoff Vargo
+ * Copyright (c) 2018. Geoff Vargo
  */
 
 package com.vargo.geoff.nestabletextview;
@@ -9,5 +9,5 @@ package com.vargo.geoff.nestabletextview;
  */
 
 public enum EqType {
-	NORMAL, FRACTION, EXPONENT, ORDINAL, SQRT
+	NORMAL, FRACTION, EXPONENT, ORDINAL, SQRT, NULL
 }
