@@ -7,13 +7,13 @@ package com.vargo.geoff.nestabletextview;
 import android.content.Context;
 import android.support.constraint.ConstraintLayout;
 
-import static com.vargo.geoff.nestabletextview.EqType.NULL;
+import static com.vargo.geoff.nestabletextview.EqType.*;
 
 public class NestableEquationBuilder {
 	private Context context;
 	private String str;
-	private EqType eqType;
-	private EqType childType = NULL;
+	private EqType eqType = NORMAL;
+	private EqType childType = NORMAL;
 	private ConstraintLayout child = null;
 
 	public NestableEquationBuilder setContext(Context context) {

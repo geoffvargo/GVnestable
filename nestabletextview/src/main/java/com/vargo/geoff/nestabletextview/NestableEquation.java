@@ -13,8 +13,7 @@ import static android.support.constraint.ConstraintSet.PARENT_ID;
 import static android.support.constraint.ConstraintSet.RIGHT;
 import static android.support.constraint.ConstraintSet.TOP;
 import static android.support.constraint.ConstraintSet.WRAP_CONTENT;
-import static com.vargo.geoff.nestabletextview.EqType.NORMAL;
-import static com.vargo.geoff.nestabletextview.EqType.NULL;
+import static com.vargo.geoff.nestabletextview.EqType.*;
 import static com.vargo.geoff.nestabletextview.EqType.SQRT;
 
 /**
@@ -35,8 +34,8 @@ public class NestableEquation extends NestableTextView {
 	 */
 	ConstraintSet params2 = new ConstraintSet();
 	ConstraintSet params3 = new ConstraintSet();
-	private EqType eqType;
-	private EqType childEqType = NULL;
+	private EqType eqType = NORMAL;
+	private EqType childEqType = NORMAL;
 
 	/**
 	 * Instantiates a new Nestable equation.
@@ -52,7 +51,8 @@ public class NestableEquation extends NestableTextView {
 		super(context, str, false);
 		value = str;
 		this.eqType = eqType;
-		eqTyper(this.eqType, childType);
+		this.childEqType = childType;
+		eqTyper(this.eqType, this.childEqType);
 	}
 
 	/**
@@ -64,19 +64,19 @@ public class NestableEquation extends NestableTextView {
 	 * 		the child type
 	 */
 	protected void eqTyper(EqType parentType, EqType childType) {
-		NestableTextView eqNew = null;
+		NestableEquation eqNew = null;
+//		NestableTextView eqNew = null;
 
-		params1.constrainHeight(this.text.getId(), WRAP_CONTENT);
-		params1.constrainWidth(this.text.getId(), WRAP_CONTENT);
+		params1.constrainHeight(this.expr.getId(), WRAP_CONTENT);
+		params1.constrainWidth(this.expr.getId(), WRAP_CONTENT);
 
 		switch (parentType) {
 			case NORMAL:
-				// TODO: rewrite the 'NORMAL' section to handle non-text operands
 				params1.constrainHeight(this.getId(), WRAP_CONTENT);
 				params1.constrainHeight(this.getId(), WRAP_CONTENT);
 
-				params1.connect(this.text.getId(), TOP, this.getId(), TOP, 0);
-				params1.connect(this.text.getId(), LEFT, this.getId(), LEFT, 0);
+				params1.connect(this.expr.getId(), TOP, this.getId(), TOP, 0);
+				params1.connect(this.expr.getId(), LEFT, this.getId(), LEFT, 0);
 
 				params1.constrainHeight(this.child.getId(), 0);
 				params1.constrainWidth(this.child.getId(), 0);
@@ -89,12 +89,12 @@ public class NestableEquation extends NestableTextView {
 				this.child.addView(eqNew);
 
 				params1.connect(this.getId(), TOP, PARENT_ID, BOTTOM, 0);
-				params1.connect(this.text.getId(), TOP, this.getId(), TOP, 0);
+				params1.connect(this.expr.getId(), TOP, this.getId(), TOP, 0);
 
 				params1.constrainHeight(this.child.getId(), WRAP_CONTENT);
 				params1.constrainWidth(this.child.getId(), WRAP_CONTENT);
 
-				params1.connect(this.child.getId(), TOP, this.text.getId(), BOTTOM, 0);
+				params1.connect(this.child.getId(), TOP, this.expr.getId(), BOTTOM, 0);
 				params1.connect(this.child.getId(), LEFT, PARENT_ID, LEFT);
 
 				params1.applyTo(this);
@@ -117,7 +117,7 @@ public class NestableEquation extends NestableTextView {
 
 				this.child.addView(eqNew);
 
-				params2.connect(this.child.getId(), LEFT, this.text.getId(), RIGHT, 0);
+				params2.connect(this.child.getId(), LEFT, this.expr.getId(), RIGHT, 0);
 				params2.connect(this.child.getId(), TOP, this.getId(), TOP, 0);
 				params2.constrainHeight(this.child.getId(), WRAP_CONTENT);
 				params2.constrainWidth(this.child.getId(), WRAP_CONTENT);
@@ -139,12 +139,24 @@ public class NestableEquation extends NestableTextView {
 				radical.constrainHeight(this.child.getId(), WRAP_CONTENT);
 				radical.constrainWidth(this.child.getId(), WRAP_CONTENT);
 
-				eqNew = new NestableEquationBuilder().setContext(this.getContext()).setStr(value).setEqType(NORMAL).createNestableEquation();
+				eqNew = new NestableEquationBuilder().setContext(this.getContext()).setStr(value).setEqType(childEqType).createNestableEquation();
+//				eqNew = new NestableEquationBuilder().setContext(this.getContext()).setStr(value).setEqType(NORMAL).createNestableEquation();
 
 				this.child.addView(eqNew);
 
+				this.measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
+
+				int tempHt = eqNew.getMeasuredHeightAndState();
+				int tempWdth = eqNew.getMeasuredWidthAndState();
+
 				//// Draw sqrt symbol
-				gvSqrt testvee = new gvSqrt(this.getContext(), "", eqNew.text.getMeasuredHeight(), eqNew.text.getMeasuredWidth() + 36);
+				gvSqrt testvee;
+				if (eqNew.getEqType() == NORMAL) {
+					testvee = new gvSqrt(this.getContext(), "", eqNew.expr.getMeasuredHeight(), eqNew.expr.getMeasuredWidth() + 36);
+				} else {
+					testvee = new gvSqrt(this.getContext(), "asdf", tempHt - 10, tempWdth + 36);
+				}
+
 				this.changeRootView(testvee);
 
 				radical.constrainHeight(testvee.getId(), WRAP_CONTENT);
@@ -239,6 +251,6 @@ public class NestableEquation extends NestableTextView {
 	 * @return the nested NestableEquation
 	 */
 	public NestableEquation getNestText() {
-		return (NestableEquation) this.text;
+		return (NestableEquation) this.expr;
 	}
 }
