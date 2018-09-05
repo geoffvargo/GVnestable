@@ -13,7 +13,7 @@ public class NestableEquationBuilder {
 	private Context context;
 	private String str;
 	private EqType eqType = NORMAL;
-	private EqType childType = NORMAL;
+	private EqType childType = NULL;
 	private ConstraintLayout child = null;
 	private boolean blankExpr = false;
 	private boolean hasText = false;

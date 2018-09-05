@@ -80,18 +80,21 @@ public class NestableEquation extends NestableTextView {
 				params1.applyTo(this);
 				break;
 			case FRACTION:
-				eqNew = new NestableEquationBuilder().setContext(this.getContext()).setStr("blank").setEqType(childType).createNestableEquation();
+				if (childType != NULL) {
+					params1.constrainHeight(this.child.getId(), WRAP_CONTENT);
+					params1.constrainWidth(this.child.getId(), WRAP_CONTENT);
+					eqNew = new NestableEquationBuilder().setContext(this.getContext()).setStr("blank").setEqType(childType).createNestableEquation();
 
-				this.child.addView(eqNew);
+					this.child.addView(eqNew);
+					params1.connect(this.getId(), TOP, PARENT_ID, BOTTOM, 0);
+					params1.connect(this.expr.getId(), TOP, this.getId(), TOP, 0);
 
-				params1.connect(this.getId(), TOP, PARENT_ID, BOTTOM, 0);
-				params1.connect(this.expr.getId(), TOP, this.getId(), TOP, 0);
-
-				params1.constrainHeight(this.child.getId(), WRAP_CONTENT);
-				params1.constrainWidth(this.child.getId(), WRAP_CONTENT);
-
+					params1.connect(this.child.getId(), LEFT, PARENT_ID, LEFT);
+				} else {
+					params1.connect(this.child.getId(), RIGHT, this.expr.getId(), RIGHT, 0);
+					params1.connect(this.child.getId(), BOTTOM, this.expr.getId(), TOP, 0);
+				}
 				params1.connect(this.child.getId(), TOP, this.expr.getId(), BOTTOM, 0);
-				params1.connect(this.child.getId(), LEFT, PARENT_ID, LEFT);
 
 				params1.applyTo(this);
 
@@ -100,26 +103,28 @@ public class NestableEquation extends NestableTextView {
 				params2.constrainHeight(this.getId(), WRAP_CONTENT);
 				params2.constrainWidth(this.getId(), WRAP_CONTENT);
 
-				// Create NestableEquation for child
-				eqNew = new NestableEquationBuilder().setContext(this.getContext()).setStr("blank").setEqType(childType).createNestableEquation();
+				if (childType != NULL) {
+					// Create NestableEquation for child
+					eqNew = new NestableEquationBuilder().setContext(this.getContext()).setStr("blank").setEqType(childType).createNestableEquation();
 
-				// Set the pivot point to (0, 0) for scaling down eqNew
-				eqNew.setPivotX(0);
-				eqNew.setPivotY(0);
+					// Set the pivot point to (0, 0) for scaling down eqNew
+					eqNew.setPivotX(0);
+					eqNew.setPivotY(0);
 
-				// Scale down eqNew to superscript size
-				eqNew.setScaleX(0.5f);
-				eqNew.setScaleY(0.5f);
+					// Scale down eqNew to superscript size
+					eqNew.setScaleX(0.5f);
+					eqNew.setScaleY(0.5f);
 
-				this.child.addView(eqNew);
+					this.child.addView(eqNew);
+
+					params2.connect(eqNew.getId(), LEFT, this.child.getId(), RIGHT, 0);
+					params2.connect(eqNew.getId(), TOP, this.child.getId(), TOP, 0);
+				}
 
 				params2.connect(this.child.getId(), LEFT, this.expr.getId(), RIGHT, 0);
 				params2.connect(this.child.getId(), TOP, this.getId(), TOP, 0);
 				params2.constrainHeight(this.child.getId(), WRAP_CONTENT);
 				params2.constrainWidth(this.child.getId(), WRAP_CONTENT);
-
-				params2.connect(eqNew.getId(), LEFT, this.child.getId(), RIGHT, 0);
-				params2.connect(eqNew.getId(), TOP, this.child.getId(), TOP, 0);
 
 				params2.applyTo(this);
 				break;
@@ -172,6 +177,16 @@ public class NestableEquation extends NestableTextView {
 
 				break;
 			case NULL:
+//				params1.constrainHeight(this.getId(), WRAP_CONTENT);
+//				params1.constrainHeight(this.getId(), WRAP_CONTENT);
+//
+//				params1.connect(this.expr.getId(), TOP, this.getId(), TOP, 0);
+//				params1.connect(this.expr.getId(), LEFT, this.getId(), LEFT, 0);
+//
+//				params1.constrainHeight(this.child.getId(), 0);
+//				params1.constrainWidth(this.child.getId(), 0);
+//
+//				params1.applyTo(this);
 				break;
 		}
 	}
@@ -216,7 +231,29 @@ public class NestableEquation extends NestableTextView {
 		}
 
 		if (nChild != null) {
-			this.addChild(nChild);
+			this.setChild(nChild);
+		}
+	}
+
+	public void eqConstrainor(EqType parent, EqType curr) {
+		switch (parent) {
+			case NORMAL:
+			case FRACTION:
+				params1 = new ConstraintSet();
+				params1.constrainHeight(this.child.getId(), WRAP_CONTENT);
+				params1.constrainWidth(this.child.getId(), WRAP_CONTENT);
+
+				params1.connect(this.getId(), TOP, PARENT_ID, BOTTOM, 0);
+
+				params1.connect(this.child.getId(), LEFT, PARENT_ID, LEFT);
+				params1.connect(this.child.getId(), TOP, this.expr.getId(), BOTTOM, 0);
+				params1.applyTo(this);
+				break;
+			case EXPONENT:
+			case ORDINAL:
+			case SQRT:
+			case NULL:
+				break;
 		}
 	}
 
@@ -226,10 +263,12 @@ public class NestableEquation extends NestableTextView {
 	 * @param child
 	 * 		the child
 	 */
-	public void addChild(NestableEquation child) {
+	public void setChild(NestableEquation child) {
 		this.child.removeAllViews();
+//		this.child.rem
 		this.child.addView(child);
-		eqTyper(this.eqType, child.eqType);
+//		eqTyper(this.eqType, child.eqType);
+		eqConstrainor(this.eqType, child.eqType);
 	}
 
 	/**
