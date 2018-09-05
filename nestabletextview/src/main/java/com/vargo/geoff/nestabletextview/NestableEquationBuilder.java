@@ -15,6 +15,13 @@ public class NestableEquationBuilder {
 	private EqType eqType = NORMAL;
 	private EqType childType = NORMAL;
 	private ConstraintLayout child = null;
+	private boolean blankExpr = false;
+	private boolean hasText = false;
+
+	public NestableEquationBuilder setHasText(boolean hasText) {
+		this.hasText = hasText;
+		return this;
+	}
 
 	public NestableEquationBuilder setContext(Context context) {
 		this.context = context;
@@ -36,7 +43,12 @@ public class NestableEquationBuilder {
 		return this;
 	}
 
+	public NestableEquationBuilder setBlankExpr(boolean blankExpr) {
+		this.blankExpr = blankExpr;
+		return this;
+	}
+
 	public NestableEquation createNestableEquation() {
-		return new NestableEquation(context, str, eqType, childType);
+		return new NestableEquation(context, str, eqType, childType, blankExpr, hasText);
 	}
 }

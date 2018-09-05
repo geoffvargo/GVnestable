@@ -4,16 +4,13 @@
 
 package com.vargo.geoff.gvnestable;
 
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.widget.LinearLayout;
+import android.os.*;
+import android.support.v7.app.*;
+import android.widget.*;
 
-import com.vargo.geoff.nestabletextview.NestableEquation;
-import com.vargo.geoff.nestabletextview.NestableEquationBuilder;
+import com.vargo.geoff.nestabletextview.*;
 
-import static com.vargo.geoff.nestabletextview.EqType.EXPONENT;
-import static com.vargo.geoff.nestabletextview.EqType.FRACTION;
-import static com.vargo.geoff.nestabletextview.EqType.SQRT;
+import static com.vargo.geoff.nestabletextview.EqType.*;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,7 +29,8 @@ public class MainActivity extends AppCompatActivity {
 		LinearLayout linnie2 = findViewById(R.id.linnie2);
 
 //		eqqie = new NestableEquationBuilder().setContext(this).setStr("blank").setEqType(FRACTION).createNestableEquation();
-		eqqie = new NestableEquationBuilder().setContext(this).setStr("blank").setEqType(FRACTION).setChildType(SQRT).createNestableEquation();
+//		eqqie = new NestableEquationBuilder().setContext(this).setStr("blank").setHasText(true).setEqType(FRACTION).setChildType(SQRT).createNestableEquation();
+		eqqie = new NestableEquationBuilder().setContext(this).setStr("blank").setHasText(true).setEqType(FRACTION).createNestableEquation();
 //		eqqie = new NestableEquationBuilder().setContext(this).setStr("blank").setEqType(FRACTION).createNestableEquation();
 		linnie.addView(eqqie);
 
@@ -41,8 +39,9 @@ public class MainActivity extends AppCompatActivity {
 //		linnie.addView(sqrty);
 
 //		eqqie2 = new NestableEquationBuilder().setContext(this).setStr("blank").setEqType(EXPONENT).setChildType(NORMAL).createNestableEquation();
-		eqqie2 = new NestableEquationBuilder().setContext(this).setStr("blank").setEqType(EXPONENT).setChildType(SQRT).createNestableEquation();
-		linnie2.addView(eqqie2);
+
+//		eqqie2 = new NestableEquationBuilder().setContext(this).setHasText(true).setStr("blank").setEqType(EXPONENT).setChildType(SQRT).createNestableEquation();
+//		linnie2.addView(eqqie2);
 
 //		eqqie3 = new NestableEquationBuilder().setContext(this).setStr("asdf").setEqType(SQRT).createNestableEquation();
 ////		linnie.addView(eqqie3);

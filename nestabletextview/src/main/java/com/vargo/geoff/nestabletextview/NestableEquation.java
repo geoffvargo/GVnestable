@@ -4,17 +4,11 @@
 
 package com.vargo.geoff.nestabletextview;
 
-import android.content.Context;
-import android.support.constraint.ConstraintSet;
+import android.content.*;
+import android.support.constraint.*;
 
-import static android.support.constraint.ConstraintSet.BOTTOM;
-import static android.support.constraint.ConstraintSet.LEFT;
-import static android.support.constraint.ConstraintSet.PARENT_ID;
-import static android.support.constraint.ConstraintSet.RIGHT;
-import static android.support.constraint.ConstraintSet.TOP;
-import static android.support.constraint.ConstraintSet.WRAP_CONTENT;
+import static android.support.constraint.ConstraintSet.*;
 import static com.vargo.geoff.nestabletextview.EqType.*;
-import static com.vargo.geoff.nestabletextview.EqType.SQRT;
 
 /**
  * Created by geoff on 12/21/2017.
@@ -46,9 +40,11 @@ public class NestableEquation extends NestableTextView {
 	 * 		the str
 	 * @param eqType
 	 * @param childType
+	 * @param blankExpr
+	 * @param hasText
 	 */
-	public NestableEquation(Context context, String str, EqType eqType, EqType childType) {
-		super(context, str, false);
+	public NestableEquation(Context context, String str, EqType eqType, EqType childType, boolean blankExpr, boolean hasText) {
+		super(context, str, hasText, blankExpr);
 		value = str;
 		this.eqType = eqType;
 		this.childEqType = childType;
@@ -181,6 +177,26 @@ public class NestableEquation extends NestableTextView {
 	}
 
 	/**
+	 * Gets equation type.
+	 *
+	 * @return the equation type enum
+	 */
+	public EqType getEqType() {
+		return eqType;
+	}
+
+	/**
+	 * Sets eq type.
+	 *
+	 * @param eqType
+	 * 		the eq type
+	 */
+	public void setEqType(EqType eqType) {
+		this.eqType = eqType;
+		eqTyper(this.eqType, this.eqType);
+	}
+
+	/**
 	 * Create new child.
 	 *
 	 * @param type
@@ -195,7 +211,7 @@ public class NestableEquation extends NestableTextView {
 			case ORDINAL:
 				break;
 			case SQRT:
-				nChild = new NestableEquation(this.getContext(), "", SQRT, NULL);
+				nChild = new NestableEquation(this.getContext(), "", SQRT, NULL, false, false);
 				break;
 		}
 
@@ -214,26 +230,6 @@ public class NestableEquation extends NestableTextView {
 		this.child.removeAllViews();
 		this.child.addView(child);
 		eqTyper(this.eqType, child.eqType);
-	}
-
-	/**
-	 * Gets equation type.
-	 *
-	 * @return the equation type enum
-	 */
-	public EqType getEqType() {
-		return eqType;
-	}
-
-	/**
-	 * Sets eq type.
-	 *
-	 * @param eqType
-	 * 		the eq type
-	 */
-	public void setEqType(EqType eqType) {
-		this.eqType = eqType;
-		eqTyper(this.eqType, this.eqType);
 	}
 
 	/**

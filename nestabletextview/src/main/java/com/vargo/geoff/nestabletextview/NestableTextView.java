@@ -36,7 +36,7 @@ public class NestableTextView extends ConstraintLayout {
 	/**
 	 * The Is expr.
 	 */
-	protected boolean isText = false;
+	protected boolean hasText = false;
 	/**
 	 * The Neq width.
 	 */
@@ -50,6 +50,8 @@ public class NestableTextView extends ConstraintLayout {
 	 */
 	protected ConstraintSet params = new ConstraintSet();
 
+	protected boolean blankExpr = false;
+
 	/**
 	 * Instantiates a new Nestable expr view.
 	 *
@@ -62,21 +64,20 @@ public class NestableTextView extends ConstraintLayout {
 
 	/**
 	 * Instantiates a new Nestable expr view.
-	 *
-	 * @param context
+	 *  @param context
 	 * 		the context
 	 * @param str
 	 * 		the str
-	 * @param isText
-	 * 		the is expr
+	 * @param hasText
+	 * @param blankExpr
 	 */
-	public NestableTextView(Context context, String str, boolean isText) {
+	public NestableTextView(Context context, String str, boolean hasText, boolean blankExpr) {
 		super(context);
 
 		this.setId(View.generateViewId());
-		this.isText = isText;
+		this.hasText = hasText;
 
-		if (this.isText) {
+		if (this.hasText) {
 			expr = new TextView(this.getContext());
 			this.expr.setId(View.generateViewId());
 			((TextView) expr).setText(str);
@@ -103,7 +104,7 @@ public class NestableTextView extends ConstraintLayout {
 		params.constrainHeight(this.getId(), WRAP_CONTENT);
 		params.constrainWidth(this.getId(), WRAP_CONTENT);
 
-		if (this.isText) {
+		if (this.hasText) {
 			params.constrainHeight(this.expr.getId(), WRAP_CONTENT);
 			params.constrainWidth(this.expr.getId(), WRAP_CONTENT);
 		} else {
@@ -130,61 +131,6 @@ public class NestableTextView extends ConstraintLayout {
 		this.addView(expr);
 		this.addView(child);
 	}
-
-/*
-	public NestableTextView(Context context, String str) {
-		super(context);
-
-		this.setId(View.generateViewId());
-
-		if (this.isText) {
-			expr = new TextView(this.getContext());
-			this.expr.setId(View.generateViewId());
-			((TextView) expr).setText(str);
-			((TextView) expr).setTextColor(BLACK);
-		} else {
-			expr = new View(this.getContext());
-			this.expr.setId(View.generateViewId());
-			((TextView) expr).setTextColor(BLACK);
-		}
-
-		child = new ConstraintLayout(this.getContext());
-
-		ConstraintSet cset = new ConstraintSet();
-		this.child.setId(View.generateViewId());
-
-		cset.constrainHeight(child.getId(), MATCH_PARENT);
-		cset.constrainWidth(child.getId(), MATCH_PARENT);
-		child.setConstraintSet(cset);
-
-		this.expr.measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
-		this.neqWidth = this.expr.getMeasuredWidth();
-		this.neqHeight = this.expr.getMeasuredHeight();
-
-		params.constrainHeight(this.getId(), WRAP_CONTENT);
-		params.constrainWidth(this.getId(), WRAP_CONTENT);
-
-		params.constrainHeight(this.expr.getId(), WRAP_CONTENT);
-		params.constrainWidth(this.expr.getId(), WRAP_CONTENT);
-
-		params.connect(this.getId(), TOP, PARENT_ID, TOP, 0);
-		params.connect(this.getId(), LEFT, PARENT_ID, LEFT, 0);
-
-		params.constrainHeight(this.child.getId(), 0);
-		params.constrainWidth(this.child.getId(), 0);
-
-		params.connect(this.expr.getId(), TOP, this.getId(), TOP, 0);
-		params.connect(this.expr.getId(), LEFT, this.getId(), LEFT, 0);
-
-		params.connect(this.child.getId(), TOP, this.getId(), TOP, 0);
-		params.connect(this.child.getId(), LEFT, this.getId(), LEFT, 0);
-
-		params.applyTo(this);
-
-		this.addView(expr);
-		this.addView(child);
-	}
-*/
 
 	/**
 	 * Gets nest expr.
