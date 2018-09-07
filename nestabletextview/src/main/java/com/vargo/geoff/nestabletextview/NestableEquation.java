@@ -80,6 +80,20 @@ public class NestableEquation extends NestableTextView {
 				params1.applyTo(this);
 				break;
 			case FRACTION:
+				this.measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
+
+				int width = this.getMeasuredWidthAndState();
+				gvFractionBar bar = new gvFractionBar(this.getContext(), width);
+
+				this.addView(bar, 1);
+
+				params1.constrainHeight(bar.getId(), WRAP_CONTENT);
+				params1.constrainWidth(bar.getId(), WRAP_CONTENT);
+
+				params1.connect(bar.getId(), TOP, this.expr.getId(), BOTTOM, 0);
+				params1.connect(bar.getId(), LEFT, this.getId(), LEFT, 0);
+//				params1.connect(bar.getId(), RIGHT, this.getId(), RIGHT, 0);
+
 				if (childType != NULL) {
 					params1.constrainHeight(this.child.getId(), WRAP_CONTENT);
 					params1.constrainWidth(this.child.getId(), WRAP_CONTENT);
@@ -94,7 +108,8 @@ public class NestableEquation extends NestableTextView {
 					params1.connect(this.child.getId(), RIGHT, this.expr.getId(), RIGHT, 0);
 					params1.connect(this.child.getId(), BOTTOM, this.expr.getId(), TOP, 0);
 				}
-				params1.connect(this.child.getId(), TOP, this.expr.getId(), BOTTOM, 0);
+				params1.connect(this.child.getId(), TOP, bar.getId(), BOTTOM, 0);
+//				params1.connect(this.child.getId(), TOP, this.expr.getId(), BOTTOM, 0);
 
 				params1.applyTo(this);
 
@@ -235,6 +250,20 @@ public class NestableEquation extends NestableTextView {
 		}
 	}
 
+	/**
+	 * Add child.
+	 *
+	 * @param child
+	 * 		the child
+	 */
+	public void setChild(NestableEquation child) {
+		this.child.removeAllViews();
+//		this.child.rem
+		this.child.addView(child);
+//		eqTyper(this.eqType, child.eqType);
+		eqConstrainor(this.eqType, child.eqType);
+	}
+
 	public void eqConstrainor(EqType parent, EqType curr) {
 		switch (parent) {
 			case NORMAL:
@@ -255,20 +284,6 @@ public class NestableEquation extends NestableTextView {
 			case NULL:
 				break;
 		}
-	}
-
-	/**
-	 * Add child.
-	 *
-	 * @param child
-	 * 		the child
-	 */
-	public void setChild(NestableEquation child) {
-		this.child.removeAllViews();
-//		this.child.rem
-		this.child.addView(child);
-//		eqTyper(this.eqType, child.eqType);
-		eqConstrainor(this.eqType, child.eqType);
 	}
 
 	/**

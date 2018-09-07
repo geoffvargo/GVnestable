@@ -4,33 +4,60 @@
 
 package com.vargo.geoff.nestabletextview;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.drawable.ScaleDrawable;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.PathShape;
-import android.view.View;
-import android.view.ViewGroup;
+import android.content.*;
+import android.graphics.*;
+import android.graphics.drawable.*;
+import android.graphics.drawable.shapes.*;
+import android.view.*;
 
-//public class gvSqrt extends View {
+/**
+ * The type Gv sqrt.
+ */
 public class gvSqrt extends View {
-	//public class gvSqrt extends android.support.v7.widget.AppCompatTextView {
-	//public class gvSqrt extends NestableTextView {
-//	protected float ypos = 22;
+	/**
+	 * The Ypos.
+	 */
 	protected float ypos = 0;
-	//	protected float xpos = 110;
+	/**
+	 * The Xpos.
+	 */
 	protected float xpos = 36;
+	/**
+	 * The Line height.
+	 */
 	protected int lineHeight = 1;
+	/**
+	 * The Line width.
+	 */
 	protected int lineWidth = 0;
+	/**
+	 * The Total width.
+	 */
 	protected float totalWidth = 0;
+	/**
+	 * The Total height.
+	 */
 	protected float totalHeight = 0;
+	/**
+	 * The actual shape of the square-root sign.
+	 */
 	protected ShapeDrawable mSqrt;
+
 	private PathShape temp;
 	private float thickness;
 
+	/**
+	 * Instantiates a new Gv sqrt.
+	 *
+	 * @param context
+	 * 		the context
+	 * @param str
+	 * 		the str
+	 * @param lineHeight
+	 * 		the line height
+	 * @param lineWidth
+	 * 		the line width
+	 */
 	public gvSqrt(Context context, String str, int lineHeight, int lineWidth) {
 		super(context);
 
@@ -107,8 +134,7 @@ public class gvSqrt extends View {
 		temp = new PathShape(symbol, lineWidth + 36, lineHeight + 76);
 		mSqrt.setShape(temp);
 
-//		mSqrt = temp.getDrawable();
-
+		//// this is to make sure our square-root symbol is scalable
 		ScaleDrawable dtemp = new ScaleDrawable(mSqrt, 0, lineWidth + 36 + (int) thickness, lineHeight + 76);
 		mSqrt = (ShapeDrawable) dtemp.getDrawable();
 		assert mSqrt != null;
@@ -121,14 +147,31 @@ public class gvSqrt extends View {
 		this.setLayoutParams(new ViewGroup.LayoutParams(lineWidth + 36 + (int) thickness, lineHeight + 76));
 	}
 
+	/**
+	 * Gets total width.
+	 *
+	 * @return the total width
+	 */
 	public float getTotalWidth() {
 		return totalWidth;
 	}
 
+	/**
+	 * Sets line height.
+	 *
+	 * @param lineHeight
+	 * 		the line height
+	 */
 	public void setLineHeight(int lineHeight) {
 		this.lineHeight = lineHeight;
 	}
 
+	/**
+	 * Sets line width.
+	 *
+	 * @param lineWidth
+	 * 		the line width
+	 */
 	public void setLineWidth(int lineWidth) {
 		this.lineWidth = lineWidth;
 	}
@@ -145,6 +188,11 @@ public class gvSqrt extends View {
 		this.lineHeight = lineHeight;
 	}*/
 
+	/**
+	 * Gets total height.
+	 *
+	 * @return the total height
+	 */
 	public float getTotalHeight() {
 		return totalHeight;
 	}
