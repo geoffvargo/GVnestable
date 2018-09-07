@@ -15,15 +15,12 @@ public class gvFractionBar extends View {
 	/**
 	 * The total width of the fraction bar.
 	 */
-	protected int totalWidth = 0;
-
+	private int totalWidth = 0;
 	/**
 	 * The actual shape of the fraction bar.
 	 */
-	protected ShapeDrawable mBar;
-
+	private ShapeDrawable mBar;
 	private int thickness;
-
 	private PathShape temp;
 
 	/**
@@ -39,6 +36,7 @@ public class gvFractionBar extends View {
 		this.setId(View.generateViewId());
 
 		thickness = 5;
+		this.totalWidth = totalWidth;
 
 		Path symbol = new Path();
 
@@ -59,6 +57,16 @@ public class gvFractionBar extends View {
 		mBar.getPaint().setFlags(Paint.ANTI_ALIAS_FLAG);
 
 		this.setLayoutParams(new ViewGroup.LayoutParams(totalWidth, thickness));
+	}
+
+	public int getTotalWidth() {
+		return totalWidth;
+	}
+
+	public void resize(int size) {
+		this.totalWidth = size;
+		this.mBar.getShape().resize(this.totalWidth, thickness);
+//		mBar.draw();
 	}
 
 	/**

@@ -17,6 +17,12 @@ public class NestableEquationBuilder {
 	private ConstraintLayout child = null;
 	private boolean blankExpr = false;
 	private boolean hasText = false;
+	private int nestLevel = 0;
+
+	public NestableEquationBuilder setNestLevel(int nestLevel) {
+		this.nestLevel = nestLevel;
+		return this;
+	}
 
 	public NestableEquationBuilder setHasText(boolean hasText) {
 		this.hasText = hasText;
@@ -49,6 +55,6 @@ public class NestableEquationBuilder {
 	}
 
 	public NestableEquation createNestableEquation() {
-		return new NestableEquation(context, str, eqType, childType, blankExpr, hasText);
+		return new NestableEquation(context, str, eqType, childType, blankExpr, hasText, nestLevel);
 	}
 }

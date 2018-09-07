@@ -31,6 +31,9 @@ public class NestableEquation extends NestableTextView {
 	private EqType eqType = NORMAL;
 	private EqType childEqType = NORMAL;
 
+	private int nestLevel = 0;
+	private NestableEquation parentNode = null;
+
 	/**
 	 * Instantiates a new Nestable equation.
 	 *
@@ -42,12 +45,14 @@ public class NestableEquation extends NestableTextView {
 	 * @param childType
 	 * @param blankExpr
 	 * @param hasText
+	 * @param nestLevel
 	 */
-	public NestableEquation(Context context, String str, EqType eqType, EqType childType, boolean blankExpr, boolean hasText) {
+	public NestableEquation(Context context, String str, EqType eqType, EqType childType, boolean blankExpr, boolean hasText, int nestLevel) {
 		super(context, str, hasText, blankExpr);
 		value = str;
 		this.eqType = eqType;
 		this.childEqType = childType;
+		this.nestLevel = nestLevel;
 		eqTyper(this.eqType, this.childEqType);
 	}
 
@@ -80,28 +85,35 @@ public class NestableEquation extends NestableTextView {
 				params1.applyTo(this);
 				break;
 			case FRACTION:
-				this.measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
+				this.expr.measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
 
-				int width = this.getMeasuredWidthAndState();
-				gvFractionBar bar = new gvFractionBar(this.getContext(), width);
+				int width = this.expr.getMeasuredWidthAndState();
+				gvFractionBar bar = new gvFractionBar(this.getContext(), width + 15);
 
 				this.addView(bar, 1);
 
-				params1.constrainHeight(bar.getId(), WRAP_CONTENT);
-				params1.constrainWidth(bar.getId(), WRAP_CONTENT);
+				params1.constrainHeight(bar.getId(), 5);
+				params1.constrainWidth(bar.getId(), bar.getTotalWidth());
 
 				params1.connect(bar.getId(), TOP, this.expr.getId(), BOTTOM, 0);
-				params1.connect(bar.getId(), LEFT, this.getId(), LEFT, 0);
-//				params1.connect(bar.getId(), RIGHT, this.getId(), RIGHT, 0);
+//				params1.connect(bar.getId(), LEFT, this.getId(), LEFT, 0);
+
+				params1.centerHorizontally(this.expr.getId(), this.getId());
+				params1.centerHorizontally(bar.getId(), this.getId());
 
 				if (childType != NULL) {
 					params1.constrainHeight(this.child.getId(), WRAP_CONTENT);
 					params1.constrainWidth(this.child.getId(), WRAP_CONTENT);
+					params1.centerHorizontally(this.child.getId(), this.getId());
+
 					eqNew = new NestableEquationBuilder().setContext(this.getContext()).setStr("blank").setEqType(childType).createNestableEquation();
 
 					this.child.addView(eqNew);
+
 					params1.connect(this.getId(), TOP, PARENT_ID, BOTTOM, 0);
 					params1.connect(this.expr.getId(), TOP, this.getId(), TOP, 0);
+
+					params1.centerHorizontally(eqNew.getId(), this.getId());
 
 					params1.connect(this.child.getId(), LEFT, PARENT_ID, LEFT);
 				} else {
@@ -226,28 +238,12 @@ public class NestableEquation extends NestableTextView {
 		eqTyper(this.eqType, this.eqType);
 	}
 
-	/**
-	 * Create new child.
-	 *
-	 * @param type
-	 * 		the type
-	 */
-	public void createNewChild(EqType type) {
-		NestableEquation nChild = null;
-		switch (type) {
-			case NORMAL:
-			case FRACTION:
-			case EXPONENT:
-			case ORDINAL:
-				break;
-			case SQRT:
-				nChild = new NestableEquation(this.getContext(), "", SQRT, NULL, false, false);
-				break;
-		}
+	public NestableEquation getParentNode() {
+		return parentNode;
+	}
 
-		if (nChild != null) {
-			this.setChild(nChild);
-		}
+	public void setParentNode(NestableEquation parentNode) {
+		this.parentNode = parentNode;
 	}
 
 	/**
@@ -257,30 +253,81 @@ public class NestableEquation extends NestableTextView {
 	 * 		the child
 	 */
 	public void setChild(NestableEquation child) {
+		child.nestLevel = this.getNestLevel() + 1;
+		child.setParentNode(this);
 		this.child.removeAllViews();
-//		this.child.rem
 		this.child.addView(child);
 //		eqTyper(this.eqType, child.eqType);
-		eqConstrainor(this.eqType, child.eqType);
+		eqConstrainor(this.eqType, child.eqType, child);
 	}
 
-	public void eqConstrainor(EqType parent, EqType curr) {
+	public int getNestLevel() {
+		return nestLevel;
+	}
+
+	public void setNestLevel(int nestLevel) {
+		this.nestLevel = nestLevel;
+	}
+
+	public void eqConstrainor(EqType parent, EqType currType, NestableEquation curr) {
 		switch (parent) {
 			case NORMAL:
+				break;
 			case FRACTION:
-				params1 = new ConstraintSet();
-				params1.constrainHeight(this.child.getId(), WRAP_CONTENT);
-				params1.constrainWidth(this.child.getId(), WRAP_CONTENT);
+				params3 = new ConstraintSet();
+				params3.constrainHeight(this.child.getId(), WRAP_CONTENT);
+				params3.constrainWidth(this.child.getId(), WRAP_CONTENT);
 
-				params1.connect(this.getId(), TOP, PARENT_ID, BOTTOM, 0);
+				params3.connect(this.getId(), TOP, PARENT_ID, BOTTOM, 0);
 
-				params1.connect(this.child.getId(), LEFT, PARENT_ID, LEFT);
-				params1.connect(this.child.getId(), TOP, this.expr.getId(), BOTTOM, 0);
-				params1.applyTo(this);
+				params3.connect(this.child.getId(), LEFT, PARENT_ID, LEFT);
+				params3.connect(this.child.getId(), TOP, this.expr.getId(), BOTTOM, 0);
+
+				params3.centerHorizontally(this.child.getId(), PARENT_ID);
+
+				if (currType == FRACTION) {
+					gvFractionBar parentBar = (gvFractionBar) this.getChildAt(1);
+					int           tempwidth = parentBar.getTotalWidth();
+
+					params3.constrainWidth(parentBar.getId(), tempwidth + 30);
+					params3.constrainHeight(parentBar.getId(), 5);
+
+					parentBar.resize(tempwidth + 30);
+
+					params3.connect(parentBar.getId(), TOP, this.expr.getId(), BOTTOM, 0);
+					params3.centerHorizontally(parentBar.getId(), this.getId());
+
+					//// resize all the parent fraction bars
+					NestableEquation cursor = this.getParentNode();
+					while (cursor != null) {
+						if (cursor.getEqType() == FRACTION) {
+							gvFractionBar tpBar = (gvFractionBar) cursor.getChildAt(1);
+
+							int csrWidth = tpBar.getTotalWidth();
+
+							ConstraintSet ptemp = new ConstraintSet();
+
+							ptemp.constrainWidth(tpBar.getId(), csrWidth + 30);
+							ptemp.constrainHeight(tpBar.getId(), 5);
+
+							tpBar.resize(csrWidth + 30);
+
+							ptemp.connect(tpBar.getId(), TOP, cursor.expr.getId(), BOTTOM, 0);
+							ptemp.centerHorizontally(tpBar.getId(), this.getId());
+
+							ptemp.applyTo(cursor);
+						}
+
+						cursor = cursor.getParentNode();
+					}
+				}
+
+				params3.applyTo(this);
 				break;
 			case EXPONENT:
 			case ORDINAL:
 			case SQRT:
+				break;
 			case NULL:
 				break;
 		}
