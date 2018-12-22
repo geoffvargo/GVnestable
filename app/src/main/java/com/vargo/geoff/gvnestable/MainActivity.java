@@ -38,10 +38,10 @@ public class MainActivity extends AppCompatActivity {
 		eqqie.setChild(eqqie3);
 		eqqie4 = new NestableEquationBuilder().setContext(this).setStr("blank").setHasText(true).setEqType(FRACTION).createNestableEquation();
 		eqqie3.setChild(eqqie4);
-		eqqie5 = new NestableEquationBuilder().setContext(this).setStr("blank").setHasText(true).setEqType(NORMAL).createNestableEquation();
+		eqqie5 = new NestableEquationBuilder().setContext(this).setStr("blank").setHasText(true).setEqType(FRACTION).createNestableEquation();
 		eqqie4.setChild(eqqie5);
-//		eqqie6 = new NestableEquationBuilder().setContext(this).setStr("blank").setHasText(true).setEqType(SQRT).createNestableEquation();
-//		eqqie5.setChild(eqqie6);
+		eqqie6 = new NestableEquationBuilder().setContext(this).setStr("blank").setHasText(true).setEqType(NORMAL).createNestableEquation();
+		eqqie5.setChild(eqqie6);
 		linnie.addView(eqqie);
 
 //		View sqrty = new gvSqrt(this, "", 35, 50);
