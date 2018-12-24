@@ -15,17 +15,10 @@ import static com.vargo.geoff.nestabletextview.EqType.*;
  */
 public class NestableEquation extends NestableTextView {
 
-	/**
-	 * The Value.
-	 */
 	protected String value = "";
-	/**
-	 * The Params 1.
-	 */
+
 	ConstraintSet params1 = new ConstraintSet();
-	/**
-	 * The Params 2.
-	 */
+
 	ConstraintSet params2 = new ConstraintSet();
 	ConstraintSet params3 = new ConstraintSet();
 	private EqType eqType = NORMAL;
@@ -206,16 +199,6 @@ public class NestableEquation extends NestableTextView {
 
 				break;
 			case NULL:
-				//				params1.constrainHeight(this.getId(), WRAP_CONTENT);
-				//				params1.constrainHeight(this.getId(), WRAP_CONTENT);
-				//
-				//				params1.connect(this.expr.getId(), TOP, this.getId(), TOP, 0);
-				//				params1.connect(this.expr.getId(), LEFT, this.getId(), LEFT, 0);
-				//
-				//				params1.constrainHeight(this.child.getId(), 0);
-				//				params1.constrainWidth(this.child.getId(), 0);
-				//
-				//				params1.applyTo(this);
 				break;
 		}
 	}

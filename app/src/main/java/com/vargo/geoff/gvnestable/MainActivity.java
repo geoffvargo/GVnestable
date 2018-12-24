@@ -33,20 +33,27 @@ public class MainActivity extends AppCompatActivity {
 
 //		eqqie = new NestableEquationBuilder().setContext(this).setStr("blank").setEqType(FRACTION).createNestableEquation();
 //		eqqie = new NestableEquationBuilder().setContext(this).setStr("blank").setHasText(true).setEqType(FRACTION).setChildType(SQRT).createNestableEquation();
+
 		eqqie = new NestableEquationBuilder().setContext(this).setStr("blank").setHasText(true).setEqType(FRACTION).createNestableEquation();
+
 		eqqie3 = new NestableEquationBuilder().setContext(this).setStr("blank").setHasText(true).setEqType(FRACTION).createNestableEquation();
-		eqqie.setChild(eqqie3);
+
 		eqqie4 = new NestableEquationBuilder().setContext(this).setStr("blank").setHasText(true).setEqType(FRACTION).createNestableEquation();
-		eqqie3.setChild(eqqie4);
+
 		eqqie5 = new NestableEquationBuilder().setContext(this).setStr("blank").setHasText(true).setEqType(FRACTION).createNestableEquation();
-		eqqie4.setChild(eqqie5);
+
 		eqqie6 = new NestableEquationBuilder().setContext(this).setStr("blank").setHasText(true).setEqType(NORMAL).createNestableEquation();
+
+		eqqie.setChild(eqqie3);
+		eqqie3.setChild(eqqie4);
+		eqqie4.setChild(eqqie5);
 		eqqie5.setChild(eqqie6);
+
 		linnie.addView(eqqie);
 
-//		View sqrty = new gvSqrt(this, "", 35, 50);
-//		sqrty.setLayoutParams(new ViewGroup.LayoutParams(200, 200));
-//		linnie.addView(sqrty);
+		/*View sqrty = new gvSqrt(this, "", 35, 50);
+		sqrty.setLayoutParams(new ViewGroup.LayoutParams(200, 200));
+		linnie.addView(sqrty);*/
 
 //		eqqie2 = new NestableEquationBuilder().setContext(this).setStr("blank").setEqType(EXPONENT).setChildType(NORMAL).createNestableEquation();
 		eqqie7 = new NestableEquationBuilder().setContext(this).setStr("blank").setHasText(true).setEqType(SQRT).createNestableEquation();
