@@ -28,11 +28,9 @@ public class MainActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+		/* BEGIN multi-line fraction */
 		linnie = findViewById(R.id.linnie);
 		LinearLayout linnie2 = findViewById(R.id.linnie2);
-
-//		eqqie = new NestableEquationBuilder().setContext(this).setStr("blank").setEqType(FRACTION).createNestableEquation();
-//		eqqie = new NestableEquationBuilder().setContext(this).setStr("blank").setHasText(true).setEqType(FRACTION).setChildType(SQRT).createNestableEquation();
 
 		eqqie = new NestableEquationBuilder().setContext(this).setStr("blank").setHasText(true).setEqType(FRACTION).createNestableEquation();
 
@@ -50,16 +48,19 @@ public class MainActivity extends AppCompatActivity {
 		eqqie5.setChild(eqqie6);
 
 		linnie.addView(eqqie);
+		/* END multi-line fraction */
 
-		/*View sqrty = new gvSqrt(this, "", 35, 50);
-		sqrty.setLayoutParams(new ViewGroup.LayoutParams(200, 200));
-		linnie.addView(sqrty);*/
+		//View sqrty = new gvSqrt(this, "", 35, 50);
+		//sqrty.setLayoutParams(new ViewGroup.LayoutParams(200, 200));
+		//linnie.addView(sqrty);
 
+		/* BEGIN sqrt test */
 //		eqqie2 = new NestableEquationBuilder().setContext(this).setStr("blank").setEqType(EXPONENT).setChildType(NORMAL).createNestableEquation();
 		eqqie7 = new NestableEquationBuilder().setContext(this).setStr("blank").setHasText(true).setEqType(SQRT).createNestableEquation();
 
 //		eqqie2 = new NestableEquationBuilder().setContext(this).setHasText(true).setStr("blank").setEqType(EXPONENT).setChildType(SQRT).createNestableEquation();
 		linnie2.addView(eqqie7);
+		/* END sqrt test */
 
 //		eqqie3 = new NestableEquationBuilder().setContext(this).setStr("asdf").setEqType(SQRT).createNestableEquation();
 ////		linnie.addView(eqqie3);
