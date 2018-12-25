@@ -15,6 +15,7 @@ import static com.vargo.geoff.nestabletextview.EqType.*;
 public class MainActivity extends AppCompatActivity {
 
 	public LinearLayout linnie;
+
 	public NestableEquation eqqie;
 	public NestableEquation eqqie2;
 	public NestableEquation eqqie3;
@@ -57,16 +58,7 @@ public class MainActivity extends AppCompatActivity {
 		/* BEGIN sqrt test */
 //		eqqie2 = new NestableEquationBuilder().setContext(this).setStr("blank").setEqType(EXPONENT).setChildType(NORMAL).createNestableEquation();
 		eqqie7 = new NestableEquationBuilder().setContext(this).setStr("blank").setHasText(true).setEqType(SQRT).createNestableEquation();
-
-//		eqqie2 = new NestableEquationBuilder().setContext(this).setHasText(true).setStr("blank").setEqType(EXPONENT).setChildType(SQRT).createNestableEquation();
 		linnie2.addView(eqqie7);
 		/* END sqrt test */
-
-//		eqqie3 = new NestableEquationBuilder().setContext(this).setStr("asdf").setEqType(SQRT).createNestableEquation();
-////		linnie.addView(eqqie3);
-//		eqqie2.setChild(eqqie3);
-
-//		eqqie4 = new NestableEquation(this, "blank", EXPONENT);
-
 	}
 }

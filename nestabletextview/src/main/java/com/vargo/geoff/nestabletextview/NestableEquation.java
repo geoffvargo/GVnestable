@@ -170,7 +170,7 @@ public class NestableEquation extends NestableTextView {
 				int tempHt = eqNew.getMeasuredHeightAndState();
 				int tempWdth = eqNew.getMeasuredWidthAndState();
 
-				//// Draw sqrt symbol
+				/* Draw sqrt symbol */
 				gvSqrt testvee;
 				if (eqNew.getEqType() == NORMAL) {
 					int lineWidth = eqNew.expr.getMeasuredWidth() + 36;
